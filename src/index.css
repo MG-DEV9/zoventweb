@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Cormorant Garamond", Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --color-burgundy-950: #23040b;
+  --color-burgundy-900: #3b0510;
+  --color-burgundy-800: #520818;
+  --color-burgundy-700: #680b20;
+  --color-burgundy-600: #85122c;
+  --color-zovent-bg: #FAF8F5;
+  --color-zovent-cream: #F5F1EB;
+  --color-zovent-sage: #D6E4CF;
+  --color-zovent-sage-tint: #EEF4EA;
+}
+
+html {
+  font-family: var(--font-sans);
+  scroll-behavior: smooth;
+  background-color: #FAF8F5;
+}
+
+/* Custom scrollbar and subtle transitions */
+::selection {
+  background-color: #520818;
+  color: #FFFFFF;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+

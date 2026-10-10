@@ -1,0 +1,6 @@
+{
+  "name": "ZOVENT — Events & Travel Considered",
+  "description": "ZOVENT brings strategy, hospitality and creative precision to corporate events, MICE, business travel and private social occasions.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
