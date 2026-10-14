@@ -1,8 +1,15 @@
 import React, { useState } from 'react';
 import { ArrowUpRight, CheckCircle2, Mail, Phone, MapPin, Clock, AlertCircle } from 'lucide-react';
 import { SITE_INFO } from '../data/zoventsData';
+import { useSEO } from '../hooks/useSEO';
 
 export const ContactPage: React.FC = () => {
+  useSEO({
+    title: 'Contact Us',
+    description: 'Get in touch with ZOVENT to plan your next corporate event, MICE programme or business travel itinerary. Offices in Gurugram and Kolkata.',
+    path: '/contact',
+  });
+
   const [formData, setFormData] = useState({
     fullName: '',
     company: '',
@@ -20,7 +27,7 @@ export const ContactPage: React.FC = () => {
 
   const eventTypes = [
     'Corporate Conference / Meeting',
-    'MICE Programme',
+    'M.I.C.E. Programme',
     'Offsite / Team Building',
     'Brand Activation',
     'Award Ceremony / Gala',
@@ -71,13 +78,13 @@ export const ContactPage: React.FC = () => {
             LET’S PLAN SOMETHING EXCEPTIONAL.
           </h1>
           <p className="text-base sm:text-lg text-[#524B4C] max-w-2xl mx-auto leading-relaxed">
-            Directly connect with our senior planning directors. We structure proposals tailored to your strategic milestones, headcount, and destination preferences.
+            Directly connect with our senior planner. We structure proposals tailored to your strategic milestones, headcount, and destination preferences.
           </p>
         </div>
       </section>
 
       {/* Main Form & Office Info Grid */}
-      <section className="py-20 lg:py-28 max-w-[1440px] mx-auto px-6 lg:px-12">
+      <section className="py-20 lg:py-28 max-w-[1440px] mx-auto px-6 lg:px-12 bg-[#F2E6EA]">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
           {/* Left: Proposal Request Form */}
@@ -318,7 +325,7 @@ export const ContactPage: React.FC = () => {
                 </p>
                 <a 
                   href={`tel:${SITE_INFO.phone}`} 
-                  className="font-serif text-2xl sm:text-3xl text-white hover:text-[#D7B4BC] transition-colors block"
+                  className="font-timesnewroman text-2xl sm:text-3xl text-white hover:text-[#D7B4BC] transition-colors block"
                 >
                   {SITE_INFO.phone}
                 </a>
@@ -340,13 +347,24 @@ export const ContactPage: React.FC = () => {
                         {office.city}
                       </h4>
                     </div>
+                    <p className="text-[10px] uppercase tracking-[0.15em] font-semibold text-[#8C8485] mb-1.5">
+                      {office.label}
+                    </p>
                     <p className="text-xs text-[#5C5556] mb-2">
                       {office.address}
                     </p>
-                    <div className="flex items-center gap-4 text-xs font-medium text-[#520818]">
+                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs font-medium text-[#520818]">
                       <a href={`tel:${office.phone}`} className="hover:underline">
                         {office.phone}
                       </a>
+                      {office.landline && (
+                        <>
+                          <span>·</span>
+                          <a href={`tel:${office.landline}`} className="hover:underline">
+                            {office.landline}
+                          </a>
+                        </>
+                      )}
                       <span>·</span>
                       <a href={`mailto:${office.email}`} className="hover:underline">
                         {office.email}

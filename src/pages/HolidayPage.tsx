@@ -3,12 +3,19 @@ import { ArrowUpRight, Compass, Moon, MapPin, Calendar, Check } from 'lucide-rea
 import { HOLIDAY_DESTINATIONS } from '../data/content';
 import { HolidayDestination } from '../types';
 import { ItineraryModal } from '../components/ItineraryModal';
+import { useSEO } from '../hooks/useSEO';
 
 interface HolidayPageProps {
   onOpenQuote: (destinationTitle?: string) => void;
 }
 
 export const HolidayPage: React.FC<HolidayPageProps> = ({ onOpenQuote }) => {
+  useSEO({
+    title: 'Curated Corporate & Private Holidays',
+    description: 'Hand-crafted holiday itineraries and incentive travel experiences across India and beyond — planned by ZOVENT with precision and care.',
+    path: '/holiday',
+  });
+
   const [selectedDest, setSelectedDest] = useState<HolidayDestination | null>(null);
 
   return (
@@ -17,7 +24,7 @@ export const HolidayPage: React.FC<HolidayPageProps> = ({ onOpenQuote }) => {
       <section className="pt-16 pb-20 lg:pt-24 lg:pb-28 border-b border-[#E8E2D9]">
         <div className="max-w-[1440px] mx-auto px-6 lg:px-12 text-center max-w-4xl">
           <p className="text-[11px] uppercase tracking-[0.22em] font-semibold text-[#8C8485] mb-4">
-            [ HOLIDAYS & BESPOKE TRAVEL ]
+            [ HOLIDAYS ]
           </p>
           <h1 className="font-serif text-4xl sm:text-6xl lg:text-7xl text-[#1E1919] font-normal leading-[1.08] mb-6">
             GO FURTHER. NEVER HURRIED.
@@ -29,13 +36,13 @@ export const HolidayPage: React.FC<HolidayPageProps> = ({ onOpenQuote }) => {
       </section>
 
       {/* Curated Routes Grid */}
-      <section className="py-20 lg:py-28 max-w-[1440px] mx-auto px-6 lg:px-12">
+      <section className="py-20 lg:py-28 max-w-[1440px] mx-auto px-6 lg:px-12 bg-[#F2E6EA]">
         <div className="mb-14">
           <p className="text-[11px] uppercase tracking-[0.2em] font-semibold text-[#8C8485] mb-2">
             [ SIGNATURE ITINERARIES ]
           </p>
-          <h2 className="font-serif text-4xl sm:text-5xl text-[#1E1919] font-normal">
-            Thoughtfully Paced Escapes
+          <h2 className="font-Cormorant Garamond Medium text-4xl sm:text-5xl text-[#520818] font-normal">
+            Easy Getaways, Endless Memories
           </h2>
         </div>
 
@@ -50,7 +57,7 @@ export const HolidayPage: React.FC<HolidayPageProps> = ({ onOpenQuote }) => {
                 <img
                   src={dest.image}
                   alt={dest.title}
-                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 opacity-90 group-hover:opacity-100"
+                  className=" font-Georgia Regular  w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 opacity-90 group-hover:opacity-100"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                 
@@ -64,7 +71,7 @@ export const HolidayPage: React.FC<HolidayPageProps> = ({ onOpenQuote }) => {
                 </div>
 
                 <div className="absolute bottom-4 left-4 right-4 text-white">
-                  <h3 className="font-serif text-2xl text-white font-normal mb-1">
+                  <h3 className="font-Georgia Regular  text-2xl text-white font-normal mb-1">
                     {dest.title}
                   </h3>
                 </div>
@@ -90,13 +97,13 @@ export const HolidayPage: React.FC<HolidayPageProps> = ({ onOpenQuote }) => {
         <div className="mt-20 bg-[#520818] text-white p-8 sm:p-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-8 shadow-xl">
           <div>
             <p className="text-[11px] uppercase tracking-[0.2em] font-semibold text-[#D7B4BC] mb-2">
-              BESPOKE LUXURY HOLIDAYS
+              EXCLUSIVE GETAWAYS
             </p>
             <h3 className="font-serif text-3xl sm:text-4xl font-normal text-white mb-2">
               Have a specific destination or milestone in mind?
             </h3>
             <p className="text-xs sm:text-sm text-white/80 max-w-xl">
-              From private family villas in Tuscany to wilderness retreats in New Zealand, our travel directors customize every detail.
+              Extraordinary Destinations. Thoughtfully Curated.
             </p>
           </div>
 

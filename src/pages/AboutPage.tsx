@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowUpRight, Compass, ShieldCheck, Sparkles, Target, MapPin } from 'lucide-react';
 import { SITE_INFO } from '../data/zoventsData';
+import { useSEO } from '../hooks/useSEO';
 
 interface AboutPageProps {
   onNavigate: (path: string) => void;
@@ -8,6 +9,12 @@ interface AboutPageProps {
 }
 
 export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenQuote }) => {
+  useSEO({
+    title: 'About Us',
+    description: 'ZOVENT is a corporate event management company in India delivering conferences, MICE, corporate travel and private occasions with strategy, hospitality and creative precision.',
+    path: '/about',
+  });
+
   const ticker = [
     'SMART THINKING', 'SEAMLESS EXECUTION', 'MEMORABLE EXPERIENCES', 'REAL IMPACT'
   ];
@@ -82,19 +89,19 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenQuote })
       </section>
 
       {/* Ticker */}
-      <div className="bg-[#1C0409] text-white py-4 overflow-hidden border-y border-[#3A0713]">
-        <div className="animate-marquee gap-10 text-xs uppercase tracking-[0.2em] font-medium text-[#E0B5BF]">
+      <div className="bg-[#520818] text-white py-4 overflow-hidden border-y border-[#3A0713]">
+        <div className="animate-marquee gap-10 text-xs uppercase tracking-[0.2em] font-medium text-[#f9f6f6]">
           {ticker.concat(ticker).concat(ticker).concat(ticker).map((item, idx) => (
             <span key={idx} className="flex items-center gap-6">
               <span>{item}</span>
-              <span className="text-[#8B1A32]">◆</span>
+              <span className="text-[#fffcfd]">◆</span>
             </span>
           ))}
         </div>
       </div>
 
       {/* Our Story & Mission */}
-      <section className="py-20 lg:py-28 border-b border-[#E8E2D9]">
+      <section className="py-20 lg:py-28 bg-[#F2E6EA] border-b border-[#E8E2D9]">
         <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
             
@@ -129,7 +136,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenQuote })
                     onClick={onOpenQuote}
                     className="text-xs uppercase tracking-wider font-semibold text-[#F2D7DD] hover:text-white flex items-center gap-1.5 cursor-pointer"
                   >
-                    <span>Start a Project</span>
+                    <span>Request a Proposal</span>
                     <ArrowUpRight size={14} />
                   </button>
                 </div>
@@ -176,7 +183,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenQuote })
       </section>
 
       {/* How We Work: 5 Steps */}
-      <section className="py-20 lg:py-28 bg-[#FAF8F5] border-b border-[#E8E2D9]">
+      <section className="py-20 lg:py-28 bg-[#F2E6EA] border-b border-[#E8E2D9]">
         <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
           <div className="mb-16">
             <p className="text-[11px] uppercase tracking-[0.2em] font-semibold text-[#8C8485] mb-2">
@@ -189,12 +196,12 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenQuote })
 
           <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
             {steps.map((st, idx) => (
-              <div key={idx} className="border-t-2 border-[#520818] pt-6 flex flex-col justify-between">
+              <div key={idx} className="border-t-2 border-[#A7C897] pt-6 flex flex-col justify-between">
                 <div>
-                  <span className="font-serif text-xs text-[#8C8485] tabular-nums block mb-2 font-medium">
+                  {/* <span className="font-serif text-xs text-[#8C8485] tabular-nums block mb-2 font-medium">
                     {st.num}
-                  </span>
-                  <h3 className="font-serif text-xl text-[#1E1919] font-normal mb-2">
+                  </span> */}
+                  <h3 className="font-serif text-xl text-[#1E1919] font-bold mb-2">
                     {st.title}
                   </h3>
                   <p className="text-xs text-[#5C5556] leading-relaxed">
@@ -207,7 +214,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenQuote })
         </div>
       </section>
 
-      {/* Pan-India Presence */}
+      {/* Pan-India Presence
       <section className="py-20 lg:py-28 bg-[#1C0409] text-white">
         <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
           <div className="text-center max-w-2xl mx-auto mb-14">
@@ -242,7 +249,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenQuote })
             </button>
           </div>
         </div>
-      </section>
+      </section> */}
 
     </div>
   );

@@ -5,6 +5,8 @@ export interface ServiceDetail {
   shortDesc: string;
   heroTagline: string;
   overview: string;
+  image: string;
+  bodyImage: string;
   bulletPoints: { title: string; desc: string }[];
   faqs: { q: string; a: string }[];
   tags?: string[];
@@ -41,8 +43,21 @@ export const SITE_INFO = {
   email: 'info@zovents.com',
   whatsappUrl: 'https://wa.me/918800753816?text=Hi%20Zovent%20Team,%20I%20would%20like%20to%20inquire%20about%20event%20and%20travel%20services.',
   offices: [
-    { city: 'GURUGRAM', address: 'Golf Course Road, DLF Phase 5, Gurugram, Haryana', phone: '+91-8800753816', email: 'info@zovents.com' },
-    { city: 'KOLKATA', address: 'Salt Lake Sector V, Bidhannagar, Kolkata, West Bengal', phone: '+91-8800753816', email: 'info@zovents.com' }
+    {
+      city: 'GURUGRAM',
+      label: 'Registered Office',
+      address: 'EPO-07-Unit No 012 - 014, 7th Floor, Emerald Plaza, Sector-65, Gurgaon-122101',
+      phone: '+91-8800753816',
+      landline: '+91 124-4807367',
+      email: 'info@zovents.com'
+    },
+    {
+      city: 'KOLKATA',
+      label: 'Corporate Office',
+      address: '13th Floor, Unit No.1319, Bengal Eco Intelligent Park, EM Block, Sector V, Salt Lake, Bidhannagar, Kolkata, West Bengal 700091',
+      phone: '+91-8800753816',
+      email: 'info@zovents.com'
+    }
   ],
   citiesReached: [
     'GURUGRAM', 'DELHI', 'NOIDA', 'MUMBAI', 'BENGALURU', 
@@ -54,6 +69,8 @@ export const SITE_INFO = {
 export const SERVICES_CATALOG: ServiceDetail[] = [
   {
     slug: 'conferences',
+    bodyImage: '/images/services2/conferences.png',
+    image: '/images/Services/conferences.png',
     tag: 'CORPORATE EVENT',
     title: 'Corporate Conferences & Meetings',
     heroTagline: 'From intimate boardroom meetings to large-scale corporate conferences, Zovent plans and manages every detail.',
@@ -77,11 +94,13 @@ export const SERVICES_CATALOG: ServiceDetail[] = [
   },
   {
     slug: 'mice',
-    tag: 'END-TO-END MICE MANAGEMENT',
+    bodyImage: '/images/services2/mice.png',
+    image: '/images/Services/mice.png',
+    tag: 'END-TO-END M.I.C.E. MANAGEMENT',
     title: 'M.I.C.E.',
-    heroTagline: 'Seamless MICE experiences designed around your brand, business goals and people.',
-    shortDesc: 'From high-impact corporate meetings and incentive trips to conferences and exhibitions, Zovent creates seamless MICE experiences designed around your brand, business goals and people across India and international destinations.',
-    overview: 'Zovent is a MICE event management company delivering end-to-end Meetings, Incentives, Conferences and Exhibitions solutions across India and international destinations. Our MICE services include corporate meetings, incentive travel, conference management, exhibition management, destination management, group travel, corporate hospitality, hotel bookings, flight coordination, ground transportation and event production. Whether you’re planning a corporate incentive trip, international conference, dealer meet, leadership meeting, exhibition or corporate group tour, our team manages the complete experience — from planning and budgeting to travel, hospitality and on-ground execution.',
+    heroTagline: 'Seamless M.I.C.E. experiences designed around your brand, business goals and people.',
+    shortDesc: 'From high-impact corporate meetings and incentive trips to conferences and exhibitions, Zovent creates seamless M.I.C.E. experiences designed around your brand, business goals and people across India and international destinations.',
+    overview: 'Zovent is a M.I.C.E. event management company delivering end-to-end Meetings, Incentives, Conferences and Exhibitions solutions across India and international destinations. Our M.I.C.E. services include corporate meetings, incentive travel, conference management, exhibition management, destination management, group travel, corporate hospitality, hotel bookings, flight coordination, ground transportation and event production. Whether you’re planning a corporate incentive trip, international conference, dealer meet, leadership meeting, exhibition or corporate group tour, our team manages the complete experience — from planning and budgeting to travel, hospitality and on-ground execution.',
     bulletPoints: [
       { title: 'Corporate Meetings & Conferences', desc: 'End-to-end planning and execution for meetings, conferences, seminars and leadership events.' },
       { title: 'Incentive Travel & Group Trips', desc: 'Curated incentive tours, employee rewards and group travel experiences built around your goals.' },
@@ -91,15 +110,17 @@ export const SERVICES_CATALOG: ServiceDetail[] = [
       { title: 'Experiential Programme Design', desc: 'Themed experiences, team activities, entertainment and customised itineraries that make your programme memorable.' }
     ],
     faqs: [
-      { q: 'What’s the difference between MICE and a regular corporate event?', a: 'MICE specifically covers Meetings, Incentives, Conferences and Exhibitions — programmes tied to business objectives like sales performance, partner relations or industry visibility, often involving travel and multi-day logistics.' },
-      { q: 'Do you manage international MICE programmes?', a: 'Yes — we handle destination selection, visas, group flights and on-ground DMC coordination for MICE programmes across Asia, the Middle East and Europe.' },
-      { q: 'How do you price a MICE programme?', a: 'Pricing is based on delegate count, destination, duration and inclusions (stay, transfers, activities). We provide a detailed per-delegate cost breakdown before confirmation.' },
-      { q: 'Can you handle group sizes of 500+?', a: 'Yes — we’ve managed MICE groups from 20 to 2,000+ delegates, with dedicated on-ground teams scaled to group size.' },
+      { q: 'What’s the difference between M.I.C.E. and a regular corporate event?', a: 'M.I.C.E. specifically covers Meetings, Incentives, Conferences and Exhibitions — programmes tied to business objectives like sales performance, partner relations or industry visibility, often involving travel and multi-day logistics.' },
+      { q: 'Do you manage international M.I.C.E. programmes?', a: 'Yes — we handle destination selection, visas, group flights and on-ground DMC coordination for M.I.C.E. programmes across Asia, the Middle East and Europe.' },
+      { q: 'How do you price a M.I.C.E. programme?', a: 'Pricing is based on delegate count, destination, duration and inclusions (stay, transfers, activities). We provide a detailed per-delegate cost breakdown before confirmation.' },
+      { q: 'Can you handle group sizes of 500+?', a: 'Yes — we’ve managed M.I.C.E. groups from 20 to 2,000+ delegates, with dedicated on-ground teams scaled to group size.' },
       { q: 'What information do you need from us to start planning?', a: 'Just your objective, target dates, approximate delegate count and budget range — we take it from there.' }
     ]
   },
   {
     slug: 'offsites',
+    bodyImage: '/images/services2/offsites.png',
+    image: '/images/Services/offsites.png',
     tag: 'RETREAT. REFLECT. RECONNECT.',
     title: 'Offsites & Team Building',
     heroTagline: 'Purposefully designed corporate offsites that bring teams together and spark fresh thinking.',
@@ -124,6 +145,8 @@ export const SERVICES_CATALOG: ServiceDetail[] = [
   },
   {
     slug: 'activations',
+    bodyImage: '/images/services2/brand-activations.png',
+    image: '/images/Services/brand-activation.png',
     tag: 'CREATE MOMENTS. BUILD BRAND.',
     title: 'Brand Activations',
     heroTagline: 'Strategic brand activation experiences that turn attention into engagement.',
@@ -147,6 +170,8 @@ export const SERVICES_CATALOG: ServiceDetail[] = [
   },
   {
     slug: 'awards',
+    bodyImage: '/images/services2/award-ceremonies.png',
+    image: '/images/Services/award-ceremonies.png',
     tag: 'CELEBRATE EXCELLENCE WITH DISTINCTION',
     title: 'Award Ceremonies & Recognition',
     heroTagline: 'We design recognition events that genuinely honour achievement.',
@@ -176,8 +201,10 @@ export const SERVICES_CATALOG: ServiceDetail[] = [
   },
   {
     slug: 'travel',
+    bodyImage: '/images/services2/corporate-travel.png',
+    image: '/images/Services/corporate-travel.png',
     tag: 'TRAVEL THAT WORKS AROUND YOU',
-    title: 'Corporate Travel & Holidays',
+    title: 'Corporate Travel ',
     heroTagline: 'From seamless business travel to bespoke group getaways, managed with precision.',
     shortDesc: 'From seamless business travel to bespoke group getaways, Zovent manages every journey with precision, comfort and care across India and international destinations.',
     overview: 'From seamless business travel to bespoke group getaways, Zovent manages every journey with precision, comfort and care. We curate corporate travel, incentive trips, luxury holidays and group travel experiences across India and international destinations — tailored around your people, purpose and preferences.',
@@ -207,7 +234,7 @@ export const GALLERY_PROJECTS: GalleryProject[] = [
     city: 'GURUGRAM',
     project: 'Corporate Event',
     year: '2026',
-    image: '/src/assets/images/keynote_partner_summit_1791547815948.jpg',
+    image: '/images/gallery/1.jpeg',
     description: 'National tech innovation conference for 800+ executive delegates, featuring dual keynote stages and seamless live stream infrastructure.',
     delegates: '800 delegates'
   },
@@ -217,7 +244,7 @@ export const GALLERY_PROJECTS: GalleryProject[] = [
     city: 'DELHI',
     project: 'MICE Programme',
     year: '2026',
-    image: '/src/assets/images/hero_banquet_udaipur_1791547888910.jpg',
+    image: '/images/gallery/2.jpeg',
     description: 'End-to-end multi-day congress bringing international delegations together with VIP protocol, airport transfers, and gala dinners.',
     delegates: '1,200 delegates'
   },
@@ -227,7 +254,7 @@ export const GALLERY_PROJECTS: GalleryProject[] = [
     city: 'NOIDA',
     project: 'Brand Activation',
     year: '2026',
-    image: '/src/assets/images/planner_desk_review_1791547802924.jpg',
+    image: '/images/gallery/3.jpeg',
     description: 'Experiential automotive reveal pavilion featuring interactive tactile displays, immersive acoustic mapping, and VIP press preview.',
     delegates: '450 attendees'
   },
@@ -237,7 +264,7 @@ export const GALLERY_PROJECTS: GalleryProject[] = [
     city: 'GURUGRAM',
     project: 'Awards Gala',
     year: '2026',
-    image: '/src/assets/images/hero_banquet_udaipur_1791547888910.jpg',
+    image: '/images/gallery/4.jpeg',
     description: 'Annual excellence gala honouring top performers across 18 business units with bespoke brass trophies and celebrity host.',
     delegates: '600 delegates'
   },
@@ -247,7 +274,7 @@ export const GALLERY_PROJECTS: GalleryProject[] = [
     city: 'GOA',
     project: 'Leadership Offsite',
     year: '2026',
-    image: '/src/assets/images/beach_dinner_sri_lanka_1791547893257.jpg',
+    image: '/images/gallery/5.jpeg',
     description: '3-day beachfront executive reset combining morning strategy sprints with sundowner beach dining and acoustic jazz.',
     delegates: '65 leaders'
   },
@@ -257,7 +284,7 @@ export const GALLERY_PROJECTS: GalleryProject[] = [
     city: 'JAIPUR',
     project: 'Corporate Travel',
     year: '2026',
-    image: '/src/assets/images/rajasthan_heritage_meeting_1791547911911.jpg',
+    image: '/images/gallery/6.jpeg',
     description: 'Palace fort buyout for executive delegations, private royal dining, and hosted heritage walk through old pink city ramparts.',
     delegates: '40 delegates'
   },
@@ -267,7 +294,7 @@ export const GALLERY_PROJECTS: GalleryProject[] = [
     city: 'BENGALURU',
     project: 'Team Building Retreat',
     year: '2026',
-    image: '/src/assets/images/bhutan_valley_monastery_1791547827332.jpg',
+    image: '/images/gallery/7.jpeg',
     description: 'High-energy outdoor immersion retreat in forest estate featuring custom problem-solving challenges and campfire sessions.',
     delegates: '140 team members'
   },
@@ -277,7 +304,7 @@ export const GALLERY_PROJECTS: GalleryProject[] = [
     city: 'DELHI',
     project: 'Product Launch Event',
     year: '2026',
-    image: '/src/assets/images/keynote_partner_summit_1791547815948.jpg',
+    image: '/images/gallery/8.jpeg',
     description: 'Flagship consumer electronics unveiling attended by 300 tech journalists, live product unboxings, and stage demo theatrics.',
     delegates: '350 attendees'
   },
@@ -287,7 +314,7 @@ export const GALLERY_PROJECTS: GalleryProject[] = [
     city: 'GURUGRAM',
     project: 'Annual Conference',
     year: '2026',
-    image: '/src/assets/images/keynote_partner_summit_1791547815948.jpg',
+    image: '/images/gallery/9.jpeg',
     description: 'All-hands strategy congress featuring multi-track breakout sessions, digital delegate check-in, and interactive voting.',
     delegates: '1,500 delegates'
   },
@@ -297,7 +324,7 @@ export const GALLERY_PROJECTS: GalleryProject[] = [
     city: 'HYDERABAD',
     project: 'Recognition Ceremony',
     year: '2026',
-    image: '/src/assets/images/hero_banquet_udaipur_1791547888910.jpg',
+    image: '/images/gallery/10.jpeg',
     description: 'Grand recognition banquet at convention centre, cinematic video tributes for milestone employees, and gourmet catering.',
     delegates: '520 attendees'
   },
@@ -307,7 +334,7 @@ export const GALLERY_PROJECTS: GalleryProject[] = [
     city: 'NOIDA',
     project: 'Incentive Programme',
     year: '2026',
-    image: '/src/assets/images/sri_lanka_heritage_train_1791547838370.jpg',
+    image: '/images/gallery/11.jpeg',
     description: 'Partner rewards programme with curated itineraries, luxury resort hospitality, and customized commemorative gifts.',
     delegates: '220 performers'
   }
@@ -461,7 +488,7 @@ export const BLOG_POSTS: BlogPost[] = [
     summary: 'Curated international destinations for Indian travellers across honeymoons, family holidays, and adventure expeditions.',
     content: [
       'With rising disposable incomes and expanding direct flight connectivity, international travel has never been more seamless for Indian travellers.',
-      'HIGHLIGHTS:\n\n• For First-Timers: Thailand, Dubai, Sri Lanka (low friction, easy visas, direct flights).\n• For Honeymoons: Maldives, Bali, Santorini (privacy and romance).\n• For Families: Singapore, Malaysia, Switzerland (safety, theme parks, and alpine trains).\n• For Adventure: Vietnam, New Zealand.\n• Value-for-Money Gems: Georgia, Azerbaijan, Nepal.'
+      'HIGHLIGHTS:\n\n• For First-Timers: Thailand, Dubai, Sri Lanka (low friction, easy visas, direct flights).\n• For Honeymoons: Maldives, Bali, Santorini (privacy and romance).\n• For Families: Singapore, Malaysia, Switzerland (safety, theme parks, and alpine trains).\n• For Adventure: Vietnam.\n• Value-for-Money Gems: Meghalaya,Sikkim, Azerbaijan, Nepal.'
     ],
     relatedSlugs: ['top-international-mice-destinations', 'corporate-incentive-travel-planning-guide']
   }
@@ -478,27 +505,27 @@ export const DEMO_INVOICES: Record<string, {
 }> = {
   'ZOV-2026-8812': {
     refId: 'ZOV-2026-8812',
-    clientName: 'TechCore India Pvt. Ltd.',
+    clientName: 'xxx India Pvt. Ltd.',
     eventName: 'Annual Leadership Summit & Gala — Gurugram',
-    amount: '₹4,50,000',
+    amount: '₹0,00,000',
     status: 'UNPAID',
     dueDate: '15-Nov-2026',
     items: [
-      { description: 'Stage Production & 4K LED Screen Setup', amount: '₹2,20,000' },
-      { description: 'VIP Delegate Hospitality & Venue Coordination', amount: '₹1,50,000' },
-      { description: 'Audio Engineering & Professional Host Booking', amount: '₹80,000' }
+      { description: 'Stage Production & 4K LED Screen Setup', amount: '₹0,00,000' },
+      { description: 'VIP Delegate Hospitality & Venue Coordination', amount: '₹0,00,000' },
+      { description: 'Audio Engineering & Professional Host Booking', amount: '₹00,000' }
     ]
   },
   'ZOV-2026-9401': {
     refId: 'ZOV-2026-9401',
-    clientName: 'Meridian Technologies',
+    clientName: 'xxx Technologies',
     eventName: 'Senior Management Offsite — Udaipur Palace',
-    amount: '₹2,80,000',
+    amount: '₹0,00,000',
     status: 'UNPAID',
     dueDate: '20-Nov-2026',
     items: [
-      { description: 'Heritage Palace Fort Buyout Coordination', amount: '₹1,80,000' },
-      { description: 'Private Charter Ground Logistics & Hospitality', amount: '₹1,00,000' }
+      { description: 'Heritage Palace Fort Buyout Coordination', amount: '₹0,00,000' },
+      { description: 'Private Charter Ground Logistics & Hospitality', amount: '₹0,00,000' }
     ]
   }
 };

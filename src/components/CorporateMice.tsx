@@ -68,7 +68,7 @@ export const CorporateMice: React.FC<CorporateMiceProps> = ({ onDiscussMandate, 
               className="relative aspect-[16/10] overflow-hidden bg-[#E2DBD0] shadow-lg group cursor-pointer"
             >
               <img
-                src="/src/assets/images/keynote_partner_summit_1791547815948.jpg"
+                src="/images/keynote_partner_summit_1791547815948.jpg"
                 alt="National partner summit in tiered auditorium with 1,200 delegates"
                 className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
                 loading="lazy"

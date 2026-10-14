@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ArrowUpRight, ChevronDown, Menu, X, Phone } from 'lucide-react';
 import { DROPDOWN_SERVICES } from '../data/content';
+import { SITE_INFO } from '../data/zoventsData';
 
 interface NavbarProps {
   onOpenEnquiry: (prefillService?: string) => void;
@@ -116,12 +117,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenEnquiry }) => {
 
         {/* Right CTA and Phone */}
         <div className="hidden sm:flex items-center gap-6 shrink-0">
-          <a 
-            href="tel:+919876543210" 
+          <a
+            href={`tel:${SITE_INFO.phone}`}
             className="text-xs font-medium tracking-wider text-[#635C5D] hover:text-[#1E1919] transition-colors flex items-center gap-1.5"
           >
             <Phone size={13} className="text-[#8C8485]" />
-            <span>+91 98765 43210</span>
+            <span>{SITE_INFO.phoneDisplay}</span>
           </a>
 
           <button
@@ -196,12 +197,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenEnquiry }) => {
           </button>
 
           <div className="pt-2 flex flex-col gap-3">
-            <a 
-              href="tel:+919876543210" 
+            <a
+              href={`tel:${SITE_INFO.phone}`}
               className="text-xs font-medium text-[#635C5D] flex items-center gap-2"
             >
               <Phone size={14} />
-              <span>+91 98765 43210</span>
+              <span>{SITE_INFO.phoneDisplay}</span>
             </a>
             <button
               onClick={() => {

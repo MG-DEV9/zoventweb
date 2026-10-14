@@ -31,7 +31,7 @@ export interface HolidayDestination {
   image: string;
   highlights: string[];
   itinerary: { day: string; title: string; detail: string }[];
-  curatedStays: string[];
+  nearbyAttractions: { name: string; description: string }[];
 }
 
 export interface TestimonialItem {

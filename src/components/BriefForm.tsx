@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowUpRight, Calendar, CheckCircle2, AlertCircle, Mail, Phone } from 'lucide-react';
+import { SITE_INFO } from '../data/zoventsData';
 
 interface BriefFormProps {
   prefillService?: string;
@@ -27,7 +28,7 @@ export const BriefForm: React.FC<BriefFormProps> = ({ prefillService, onSubmitte
 
   const serviceOptions = [
     'Corporate Events',
-    'MICE',
+    'M.I.C.E.',
     'Corporate Conferences',
     'Offsites & Team Building',
     'Brand Activations',
@@ -100,12 +101,12 @@ export const BriefForm: React.FC<BriefFormProps> = ({ prefillService, onSubmitte
                 <span>hello@zovent.com</span>
               </a>
 
-              <a 
-                href="tel:+919876543210" 
+              <a
+                href={`tel:${SITE_INFO.phone}`}
                 className="hover:text-[#D7B4BC] transition-colors flex items-center gap-2 text-white/90"
               >
                 <Phone size={14} className="text-[#D7B4BC]" />
-                <span>+91 98765 43210</span>
+                <span>{SITE_INFO.phoneDisplay}</span>
               </a>
             </div>
           </div>

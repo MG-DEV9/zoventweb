@@ -1,12 +1,19 @@
 import React, { useState } from 'react';
 import { ArrowUpRight, Clock, Calendar, User } from 'lucide-react';
 import { BLOG_POSTS, BlogPost } from '../data/zoventsData';
+import { useSEO } from '../hooks/useSEO';
 
 interface BlogListPageProps {
   onNavigate: (path: string) => void;
 }
 
 export const BlogListPage: React.FC<BlogListPageProps> = ({ onNavigate }) => {
+  useSEO({
+    title: 'Blog — Event Planning Insights & Travel Ideas',
+    description: 'Insights on corporate event planning, MICE trends, corporate culture and travel from the ZOVENT team.',
+    path: '/blog',
+  });
+
   const [activeCategory, setActiveCategory] = useState<string>('ALL');
 
   const categories = ['ALL', 'EVENT PLANNING', 'INDUSTRY TRENDS', 'TRAVEL', 'CORPORATE CULTURE'];
@@ -100,7 +107,7 @@ export const BlogListPage: React.FC<BlogListPageProps> = ({ onNavigate }) => {
       </div>
 
       {/* Blog Cards Grid */}
-      <section className="py-16 lg:py-24 max-w-[1440px] mx-auto px-6 lg:px-12">
+      <section className="py-16 lg:py-24 max-w-[1440px] mx-auto px-6 lg:px-12 bg-[#F2E6EA]">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredPosts.map((post) => (
             <div

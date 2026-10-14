@@ -33,7 +33,7 @@ export const HowWeCanHelp: React.FC<HowWeCanHelpProps> = ({ onSelectMandate, onO
             {/* Photo of event planner reviewing blueprints */}
             <div className="relative aspect-[4/3] overflow-hidden shadow-md bg-[#E5DFD5]">
               <img
-                src="/src/assets/images/planner_desk_review_1791547802924.jpg"
+                src="/images/planner_desk_review_1791547802924.jpg"
                 alt="Event planner reviewing architectural floorplans and schedules"
                 className="w-full h-full object-cover object-center transform hover:scale-[1.02] transition-transform duration-500"
                 loading="lazy"

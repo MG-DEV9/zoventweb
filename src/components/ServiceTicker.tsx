@@ -7,7 +7,7 @@ interface ServiceTickerProps {
 export const ServiceTicker: React.FC<ServiceTickerProps> = ({ onSelectService }) => {
   const items = [
     { num: '01', name: 'Corporate Events', id: 'corporate-events' },
-    { num: '02', name: 'MICE', id: 'mice' },
+    { num: '02', name: 'M.I.C.E.', id: 'mice' },
     { num: '03', name: 'Corporate Travel', id: 'corporate-travel' },
     { num: '04', name: 'Holidays', id: 'holidays' },
     { num: '05', name: 'Social Occasions', id: 'social-occasions' }

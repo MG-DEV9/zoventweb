@@ -1,4 +1,5 @@
 import React from 'react';
+import { SITE_INFO } from '../data/zoventsData';
 
 interface FooterProps {
   onNavigate: (href: string) => void;
@@ -37,7 +38,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </li>
               <li>
                 <button onClick={() => onNavigate('#corporate-events')} className="hover:text-white transition-colors cursor-pointer text-left">
-                  MICE
+                  M.I.C.E.
                 </button>
               </li>
               <li>
@@ -95,16 +96,16 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             <ul className="space-y-3 text-xs tracking-wide text-white/75">
               <li>
                 <a href="mailto:hello@zovent.com" className="hover:text-white lowercase transition-colors">
-                  hello@zovent.com
+                  info@zovent.com
                 </a>
               </li>
               <li>
-                <a href="tel:+919876543210" className="hover:text-white transition-colors">
-                  +91 98765 43210
+                <a href={`tel:${SITE_INFO.phone}`} className="hover:text-white transition-colors">
+                  {SITE_INFO.phoneDisplay}
                 </a>
               </li>
               <li className="pt-2 text-white/60">
-                Mumbai · Delhi NCR · Bengaluru
+                kolkata · Delhi NCR ·
               </li>
             </ul>
           </div>

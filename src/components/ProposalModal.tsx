@@ -34,7 +34,7 @@ export const ProposalModal: React.FC<ProposalModalProps> = ({ isOpen, prefillSer
 
   const eventTypes = [
     'Corporate Conference / Meeting',
-    'MICE Programme',
+    'M.I.C.E. Programme',
     'Offsite / Team Building',
     'Brand Activation',
     'Award Ceremony / Gala',

@@ -1,8 +1,16 @@
 import React, { useState } from 'react';
 import { ShieldCheck, Search, CheckCircle2, Lock, CreditCard, ArrowRight, RefreshCw, AlertCircle } from 'lucide-react';
 import { DEMO_INVOICES, SITE_INFO } from '../data/zoventsData';
+import { useSEO } from '../hooks/useSEO';
 
 export const PaymentPage: React.FC = () => {
+  useSEO({
+    title: 'Secure Payment',
+    description: 'Securely pay your ZOVENT invoice online.',
+    path: '/payment',
+    noIndex: true,
+  });
+
   const [refInput, setRefInput] = useState('');
   const [invoice, setInvoice] = useState<typeof DEMO_INVOICES[string] | null>(null);
   const [errorMsg, setErrorMsg] = useState('');
@@ -12,7 +20,7 @@ export const PaymentPage: React.FC = () => {
   const handleSearch = (overrideId?: string) => {
     const searchId = (overrideId || refInput).trim().toUpperCase();
     if (!searchId) {
-      setErrorMsg('Please enter a valid payment reference ID');
+      setErrorMsg('Please enter a valid payment Booking/Reference ID');
       setInvoice(null);
       return;
     }
@@ -51,19 +59,19 @@ export const PaymentPage: React.FC = () => {
             PAY ZOVENT.
           </h1>
           <p className="text-base sm:text-lg text-[#524B4C] max-w-2xl mx-auto leading-relaxed">
-            Enter your payment reference ID to load your invoice details and pay securely via Razorpay.
+            Enter your payment Booking/Reference ID to load your invoice details and pay securely.
           </p>
         </div>
       </section>
 
       {/* Main Payment Container */}
-      <section className="py-16 lg:py-24 max-w-[1440px] mx-auto px-6 lg:px-12 max-w-4xl">
+      <section className="py-16 lg:py-24 max-w-[1440px] mx-auto px-6 lg:px-12 max-w-4xl bg-[#F2E6EA]">
         <div className="bg-[#FCFBF8] border border-[#E3DDD4] p-8 sm:p-12 shadow-sm">
           
           {/* Reference ID Search Form */}
           <div className="mb-10">
             <label className="block text-[11px] uppercase tracking-[0.2em] font-bold text-[#666061] mb-3">
-              PAYMENT REFERENCE ID
+              PAYMENT BOOKING/REFERENCE ID
             </label>
             <div className="flex flex-col sm:flex-row gap-3">
               <input
@@ -206,13 +214,7 @@ export const PaymentPage: React.FC = () => {
 
           {/* Trust and Help Footnotes matching transcript */}
           <div className="mt-12 pt-8 border-t border-[#E8E2D9] grid grid-cols-1 sm:grid-cols-2 gap-6 text-xs text-[#6B6364]">
-            <div className="flex items-start gap-2.5">
-              <Lock size={15} className="text-[#520818] shrink-0 mt-0.5" />
-              <div>
-                <p className="font-bold text-[#1E1919]">Secured by Razorpay</p>
-                <p className="mt-0.5">We never store your card or UPI credentials. PCI-DSS Level 1 compliant.</p>
-              </div>
-            </div>
+
 
             <div className="flex items-start gap-2.5">
               <ShieldCheck size={15} className="text-[#520818] shrink-0 mt-0.5" />

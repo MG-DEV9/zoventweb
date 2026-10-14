@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, ArrowUpRight, Check, Compass, Calendar, Moon } from 'lucide-react';
+import { X, ArrowUpRight, Compass, Calendar, Moon } from 'lucide-react';
 import { HolidayDestination } from '../types';
 
 interface ItineraryModalProps {
@@ -60,23 +60,18 @@ export const ItineraryModal: React.FC<ItineraryModalProps> = ({ destination, onC
           <div>
             <h3 className="text-xs uppercase tracking-[0.2em] font-semibold text-[#8C8485] mb-4 flex items-center gap-2">
               <Compass size={14} className="text-[#520818]" />
-              <span>Signature Experiences & Access</span>
+              <span>Description</span>
             </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {destination.highlights.map((h, i) => (
-                <div key={i} className="flex items-start gap-2.5 text-xs text-[#423C3D] bg-[#F5EFE6] p-3">
-                  <Check size={14} className="text-[#520818] shrink-0 mt-0.5" />
-                  <span>{h}</span>
-                </div>
-              ))}
-            </div>
+            <p className="text-xs text-[#423C3D] bg-[#F5EFE6] p-4 leading-relaxed">
+              {destination.highlights.join('. ')}.
+            </p>
           </div>
 
-          {/* Day by Day Pacing */}
+          {/* Day by Day Itinerary */}
           <div>
             <h3 className="text-xs uppercase tracking-[0.2em] font-semibold text-[#8C8485] mb-4 flex items-center gap-2">
               <Calendar size={14} className="text-[#520818]" />
-              <span>Considered Route & Pacing</span>
+              <span>Itinerary</span>
             </h3>
             <div className="space-y-4 border-l border-[#DED7CD] pl-5 ml-2">
               {destination.itinerary.map((step, i) => (
@@ -96,16 +91,17 @@ export const ItineraryModal: React.FC<ItineraryModalProps> = ({ destination, onC
             </div>
           </div>
 
-          {/* Curated Stays */}
+          {/* Nearby Attractions */}
           <div>
             <h3 className="text-xs uppercase tracking-[0.2em] font-semibold text-[#8C8485] mb-3">
-              Curated Heritage & Sanctuary Stays
+              nearby attractions
             </h3>
-            <div className="flex flex-wrap gap-2">
-              {destination.curatedStays.map((stay, i) => (
-                <span key={i} className="text-xs bg-[#EFE9E0] text-[#2C2728] px-3 py-1.5 font-medium">
-                  {stay}
-                </span>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              {destination.nearbyAttractions.map((place, i) => (
+                <div key={i} className="bg-[#EFE9E0] text-[#2C2728] px-3.5 py-3">
+                  <span className="text-xs font-semibold block mb-1">{place.name}</span>
+                  <p className="text-[11px] text-[#5E5758] leading-relaxed">{place.description}</p>
+                </div>
               ))}
             </div>
           </div>
@@ -113,7 +109,7 @@ export const ItineraryModal: React.FC<ItineraryModalProps> = ({ destination, onC
           {/* Action CTA */}
           <div className="pt-6 border-t border-[#E8E2D9] flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-xs text-[#7A7374]">
-              Every itinerary is customized to your travel window, pace, and companions.
+              Every journey is thoughtfully designed around your preferences, schedule, and travel style.
             </p>
             <button
               onClick={() => {

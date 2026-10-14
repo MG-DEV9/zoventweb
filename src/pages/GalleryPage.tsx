@@ -1,16 +1,23 @@
 import React, { useState } from 'react';
-import { ArrowUpRight, X, MapPin, Calendar, Users } from 'lucide-react';
+import { X, MapPin, Calendar, Users } from 'lucide-react';
 import { GALLERY_PROJECTS, GalleryProject } from '../data/zoventsData';
+import { useSEO } from '../hooks/useSEO';
 
 interface GalleryPageProps {
   onOpenQuote: (projectName?: string) => void;
 }
 
 export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenQuote }) => {
+  useSEO({
+    title: 'Event Gallery — Our Work',
+    description: 'Explore ZOVENT\'s portfolio of corporate conferences, MICE programmes, offsites and curated travel experiences delivered across India.',
+    path: '/gallery',
+  });
+
   const [filter, setFilter] = useState<string>('ALL');
   const [selectedProject, setSelectedProject] = useState<GalleryProject | null>(null);
 
-  const categories = ['ALL', 'CONFERENCES', 'MICE', 'OFFSITES', 'AWARDS', 'ACTIVATIONS', 'TRAVEL'];
+  const categories = ['ALL', 'M.I.C.E.', 'TRAVEL'];
 
   const filteredProjects = filter === 'ALL' 
     ? GALLERY_PROJECTS 
@@ -71,7 +78,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenQuote }) => {
             <div
               key={p.id}
               onClick={() => setSelectedProject(p)}
-              className="bg-[#FCFBF8] border border-[#E5DFD5] group cursor-pointer hover:border-[#520818] transition-all hover:shadow-xl flex flex-col justify-between overflow-hidden"
+              className="bg-[#FCFBF8] border border-[#E5DFD5] group cursor-pointer hover:border-[#520818] transition-all hover:shadow-xl overflow-hidden"
             >
               <div className="relative aspect-[16/10] overflow-hidden bg-[#E5DFD5]">
                 <img
@@ -82,34 +89,8 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenQuote }) => {
                 />
                 <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors" />
 
-                <div className="absolute top-3 left-3 bg-black/50 backdrop-blur-sm px-2.5 py-1 text-[10px] uppercase tracking-wider text-white font-medium">
-                  {p.city}
-                </div>
-
                 <div className="absolute bottom-3 right-3 bg-white/95 px-3 py-1.5 text-[11px] uppercase tracking-wider font-bold text-[#520818] group-hover:bg-[#520818] group-hover:text-white transition-colors">
                   [ VIEW ]
-                </div>
-              </div>
-
-              <div className="p-6 flex flex-col justify-between flex-1">
-                <div>
-                  <div className="flex items-center justify-between text-[10px] uppercase tracking-widest text-[#8C8485] font-semibold mb-2">
-                    <span className="text-[#520818]">[ {p.category} ]</span>
-                    <span>{p.year}</span>
-                  </div>
-
-                  <h3 className="font-serif text-2xl text-[#1E1919] font-normal mb-2 group-hover:text-[#520818] transition-colors">
-                    {p.project}
-                  </h3>
-
-                  <p className="text-xs text-[#5C5556] leading-relaxed line-clamp-2">
-                    {p.description}
-                  </p>
-                </div>
-
-                <div className="pt-4 mt-4 border-t border-[#F0EBE3] flex items-center justify-between text-xs text-[#7A7374]">
-                  <span>{p.delegates || 'Curated mandate'}</span>
-                  <ArrowUpRight size={15} className="text-[#8C8485] group-hover:text-[#520818] transition-colors" />
                 </div>
               </div>
             </div>
@@ -140,57 +121,6 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenQuote }) => {
                 alt={selectedProject.project}
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-              <div className="absolute bottom-5 left-6 right-6 text-white">
-                <p className="text-[10px] uppercase tracking-[0.2em] font-semibold text-[#D7B4BC] mb-1">
-                  [ {selectedProject.category} ] · {selectedProject.year}
-                </p>
-                <h2 className="font-serif text-3xl sm:text-4xl text-white font-normal">
-                  {selectedProject.project} — {selectedProject.city}
-                </h2>
-              </div>
-            </div>
-
-            <div className="p-6 sm:p-8 space-y-6">
-              <div className="flex flex-wrap gap-6 text-xs text-[#5C5556] pb-4 border-b border-[#E8E2D9]">
-                <div className="flex items-center gap-1.5">
-                  <MapPin size={14} className="text-[#520818]" />
-                  <span className="font-semibold text-[#1E1919]">{selectedProject.city}</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <Calendar size={14} className="text-[#520818]" />
-                  <span>Year: {selectedProject.year}</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <Users size={14} className="text-[#520818]" />
-                  <span>{selectedProject.delegates || 'Custom group'}</span>
-                </div>
-              </div>
-
-              <div>
-                <h4 className="text-xs uppercase tracking-wider font-semibold text-[#8C8485] mb-2">
-                  Project Brief & Execution Scope
-                </h4>
-                <p className="text-sm text-[#423D3E] leading-relaxed">
-                  {selectedProject.description}
-                </p>
-              </div>
-
-              <div className="pt-4 border-t border-[#E8E2D9] flex items-center justify-between">
-                <p className="text-xs text-[#7A7374]">
-                  Need a similar execution for your organisation?
-                </p>
-                <button
-                  onClick={() => {
-                    const title = selectedProject.project;
-                    setSelectedProject(null);
-                    onOpenQuote(title);
-                  }}
-                  className="bg-[#520818] hover:bg-[#680B20] text-white text-xs uppercase font-medium tracking-widest px-6 py-3 cursor-pointer"
-                >
-                  Request Proposal →
-                </button>
-              </div>
             </div>
 
           </div>

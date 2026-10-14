@@ -60,7 +60,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenEnquiry, onExploreWork }) => {
           <div className="lg:col-span-6 relative">
             <div className="relative aspect-[16/10] sm:aspect-[16/11] lg:aspect-[16/11] overflow-hidden shadow-2xl bg-[#EBE5DC]">
               <img
-                src="/src/assets/images/hero_banquet_udaipur_1791547888910.jpg"
+                src="/images/hero_banquet_udaipur_1791547888910.jpg"
                 alt="Leadership Offsite in Udaipur - Grand Banquet Courtyard with Chandeliers"
                 className="w-full h-full object-cover object-center transform hover:scale-[1.02] transition-transform duration-700 ease-out"
                 loading="eager"
