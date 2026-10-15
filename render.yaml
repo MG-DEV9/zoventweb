@@ -22,4 +22,4 @@ services:
       - key: ADMIN_SEED_PASSWORD
         sync: false
       - key: CLIENT_URL
-        sync: false
+        value: https://zovents.com

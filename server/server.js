@@ -19,13 +19,16 @@ const app = express();
 
 // Without CLIENT_URL set, CORS is wide open (fine for local dev). Once a
 // frontend is deployed, set CLIENT_URL in the environment to lock requests
-// down to that origin — localhost is always allowed on top of it for dev.
+// down to that origin — localhost is always allowed on top of it for dev,
+// and the apex/www variant of CLIENT_URL is allowed automatically.
 const clientUrl = process.env.CLIENT_URL;
+const clientUrlAlt =
+  clientUrl && (clientUrl.includes('://www.') ? clientUrl.replace('://www.', '://') : clientUrl.replace('://', '://www.'));
 app.use(
   cors({
     origin: (origin, callback) => {
       if (!origin || !clientUrl) return callback(null, true);
-      const allowed = origin === clientUrl || /^https?:\/\/localhost(:\d+)?$/.test(origin);
+      const allowed = origin === clientUrl || origin === clientUrlAlt || /^https?:\/\/localhost(:\d+)?$/.test(origin);
       callback(allowed ? null : new Error('Not allowed by CORS'), allowed);
     },
   })
