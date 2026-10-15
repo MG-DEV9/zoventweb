@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { ArrowUpRight, Check, Star, ShieldCheck, Globe, Users } from 'lucide-react';
 import { SERVICES_CATALOG, BLOG_POSTS, SITE_INFO } from '../data/zoventsData';
 import { HeroLeadForm } from '../components/HeroLeadForm';
-import { useSEO } from '../hooks/useSEO';
 
 interface HomePageProps {
   onNavigate: (path: string) => void;
@@ -12,12 +11,6 @@ interface HomePageProps {
 const HERO_IMAGES = ['/images/Hero1.png', '/images/Hero2.png', '/images/Hero3.png'];
 
 export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote }) => {
-  useSEO({
-    title: 'ZOVENT — Corporate Event Management & MICE Company in India',
-    description: 'ZOVENT plans and executes corporate conferences, MICE, offsites, award ceremonies and corporate travel across India — strategy, hospitality and flawless on-ground execution.',
-    path: '/',
-  });
-
   const latestBlogs = BLOG_POSTS.slice(0, 3);
 
   const [heroSlide, setHeroSlide] = useState(0);

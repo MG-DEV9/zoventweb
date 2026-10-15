@@ -1,19 +1,12 @@
 import React, { useState } from 'react';
 import { X, MapPin, Calendar, Users } from 'lucide-react';
 import { GALLERY_PROJECTS, GalleryProject } from '../data/zoventsData';
-import { useSEO } from '../hooks/useSEO';
 
 interface GalleryPageProps {
   onOpenQuote: (projectName?: string) => void;
 }
 
 export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenQuote }) => {
-  useSEO({
-    title: 'Event Gallery — Our Work',
-    description: 'Explore ZOVENT\'s portfolio of corporate conferences, MICE programmes, offsites and curated travel experiences delivered across India.',
-    path: '/gallery',
-  });
-
   const [filter, setFilter] = useState<string>('ALL');
   const [selectedProject, setSelectedProject] = useState<GalleryProject | null>(null);
 

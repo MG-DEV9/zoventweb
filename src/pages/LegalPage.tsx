@@ -1,35 +1,13 @@
 import React from 'react';
 import { ArrowLeft, Shield, FileText, RefreshCw } from 'lucide-react';
 import { SITE_INFO } from '../data/zoventsData';
-import { useSEO } from '../hooks/useSEO';
 
 interface LegalPageProps {
   type: 'privacy' | 'terms' | 'refunds';
   onNavigate: (path: string) => void;
 }
 
-const LEGAL_SEO: Record<LegalPageProps['type'], { title: string; description: string }> = {
-  privacy: {
-    title: 'Privacy Policy',
-    description: 'Read ZOVENT\'s privacy policy to understand how we collect, use and protect your information.',
-  },
-  terms: {
-    title: 'Terms of Service',
-    description: 'Review the terms of service governing the use of ZOVENT\'s event management and travel services.',
-  },
-  refunds: {
-    title: 'Refund Policy',
-    description: 'Learn about ZOVENT\'s cancellation and refund policy for event and travel bookings.',
-  },
-};
-
 export const LegalPage: React.FC<LegalPageProps> = ({ type, onNavigate }) => {
-  useSEO({
-    title: LEGAL_SEO[type].title,
-    description: LEGAL_SEO[type].description,
-    path: `/legal/${type}`,
-  });
-
   return (
     <div className="bg-[#FAF8F5] min-h-screen">
       

@@ -1,19 +1,12 @@
 import React, { useState } from 'react';
 import { ArrowUpRight, Clock, Calendar, User } from 'lucide-react';
 import { BLOG_POSTS, BlogPost } from '../data/zoventsData';
-import { useSEO } from '../hooks/useSEO';
 
 interface BlogListPageProps {
   onNavigate: (path: string) => void;
 }
 
 export const BlogListPage: React.FC<BlogListPageProps> = ({ onNavigate }) => {
-  useSEO({
-    title: 'Blog — Event Planning Insights & Travel Ideas',
-    description: 'Insights on corporate event planning, MICE trends, corporate culture and travel from the ZOVENT team.',
-    path: '/blog',
-  });
-
   const [activeCategory, setActiveCategory] = useState<string>('ALL');
 
   const categories = ['ALL', 'EVENT PLANNING', 'INDUSTRY TRENDS', 'TRAVEL', 'CORPORATE CULTURE'];

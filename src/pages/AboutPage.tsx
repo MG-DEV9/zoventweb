@@ -1,7 +1,6 @@
 import React from 'react';
 import { ArrowUpRight, Compass, ShieldCheck, Sparkles, Target, MapPin } from 'lucide-react';
 import { SITE_INFO } from '../data/zoventsData';
-import { useSEO } from '../hooks/useSEO';
 
 interface AboutPageProps {
   onNavigate: (path: string) => void;
@@ -9,12 +8,6 @@ interface AboutPageProps {
 }
 
 export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenQuote }) => {
-  useSEO({
-    title: 'About Us',
-    description: 'ZOVENT is a corporate event management company in India delivering conferences, MICE, corporate travel and private occasions with strategy, hospitality and creative precision.',
-    path: '/about',
-  });
-
   const ticker = [
     'SMART THINKING', 'SEAMLESS EXECUTION', 'MEMORABLE EXPERIENCES', 'REAL IMPACT'
   ];

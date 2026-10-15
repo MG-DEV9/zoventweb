@@ -1,7 +1,6 @@
 import React from 'react';
 import { ArrowLeft, ArrowUpRight, Clock, Calendar, User, Share2 } from 'lucide-react';
 import { BlogPost, BLOG_POSTS } from '../data/zoventsData';
-import { useSEO } from '../hooks/useSEO';
 
 interface BlogPostPageProps {
   post: BlogPost;
@@ -10,13 +9,6 @@ interface BlogPostPageProps {
 }
 
 export const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, onNavigate, onOpenQuote }) => {
-  useSEO({
-    title: post.title,
-    description: post.summary,
-    path: `/blog/${post.slug}`,
-    type: 'article',
-  });
-
   const relatedPosts = BLOG_POSTS.filter(b => post.relatedSlugs.includes(b.slug));
 
   return (

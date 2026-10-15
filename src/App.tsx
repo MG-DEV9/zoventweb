@@ -18,6 +18,9 @@ import { PaymentPage } from './pages/PaymentPage';
 import { BlogListPage } from './pages/BlogListPage';
 import { BlogPostPage } from './pages/BlogPostPage';
 import { LegalPage } from './pages/LegalPage';
+import { AdminLogin } from './pages/admin/AdminLogin';
+import { AdminPayments } from './pages/admin/AdminPayments';
+import { getAdminToken } from './pages/admin/adminAuth';
 
 import { SERVICES_CATALOG, BLOG_POSTS } from './data/zoventsData';
 
@@ -121,9 +124,10 @@ export default function App() {
       return <ContactPage />;
     }
 
-    // 8. Payment
-    if (currentPath === '/payment') {
-      return <PaymentPage />;
+    // 8. Payment (/payment or /payment/:paymentId)
+    if (currentPath === '/payment' || currentPath.startsWith('/payment/')) {
+      const ref = currentPath.startsWith('/payment/') ? currentPath.replace('/payment/', '') : undefined;
+      return <PaymentPage initialReference={ref} onNavigate={handleNavigate} />;
     }
 
     // 9. Blog Overview
@@ -158,6 +162,18 @@ export default function App() {
       return <LegalPage type="refunds" onNavigate={handleNavigate} />;
     }
 
+    // 12. Admin
+    if (currentPath === '/admin/login') {
+      return <AdminLogin onNavigate={handleNavigate} />;
+    }
+    if (currentPath === '/admin') {
+      return getAdminToken() ? (
+        <AdminPayments onNavigate={handleNavigate} />
+      ) : (
+        <AdminLogin onNavigate={handleNavigate} />
+      );
+    }
+
     // Fallback: Home
     return (
       <HomePage 
@@ -167,14 +183,18 @@ export default function App() {
     );
   };
 
+  const isAdminRoute = currentPath === '/admin' || currentPath === '/admin/login';
+
   return (
     <div className="min-h-screen bg-[#FAF8F5] text-[#1E1919] flex flex-col font-sans selection:bg-[#520818] selection:text-white">
       {/* Site-wide Top Header */}
-      <HeaderNav 
-        currentPath={currentPath}
-        onNavigate={handleNavigate}
-        onOpenProposalModal={(svc) => handleOpenProposal(svc)}
-      />
+      {!isAdminRoute && (
+        <HeaderNav
+          currentPath={currentPath}
+          onNavigate={handleNavigate}
+          onOpenProposalModal={(svc) => handleOpenProposal(svc)}
+        />
+      )}
 
       {/* Dynamic Page Router */}
       <main className="flex-1">
@@ -182,10 +202,12 @@ export default function App() {
       </main>
 
       {/* Site-wide Footer */}
-      <FooterNav 
-        onNavigate={handleNavigate}
-        onOpenProposal={() => handleOpenProposal()}
-      />
+      {!isAdminRoute && (
+        <FooterNav
+          onNavigate={handleNavigate}
+          onOpenProposal={() => handleOpenProposal()}
+        />
+      )}
 
       {/* Proposal Request Modal Drawer */}
       <ProposalModal 

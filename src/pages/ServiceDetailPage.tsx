@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { ArrowLeft, ArrowUpRight, Check, ChevronDown, HelpCircle, Phone, Calendar } from 'lucide-react';
 import { ServiceDetail } from '../data/zoventsData';
 import { HeroLeadForm } from '../components/HeroLeadForm';
-import { useSEO } from '../hooks/useSEO';
 
 interface ServiceDetailPageProps {
   service: ServiceDetail;
@@ -11,13 +10,6 @@ interface ServiceDetailPageProps {
 }
 
 export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({ service, onNavigate, onOpenQuote }) => {
-  useSEO({
-    title: service.title,
-    description: service.shortDesc,
-    path: `/services/${service.slug}`,
-    image: service.image,
-  });
-
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   return (

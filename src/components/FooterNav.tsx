@@ -188,6 +188,10 @@ export const FooterNav: React.FC<FooterNavProps> = ({ onNavigate, onOpenProposal
           <p>© 2026 ZOVENT Pvt. Ltd. All rights reserved.</p>
           
           <div className="flex flex-wrap items-center gap-4">
+            <button onClick={() => onNavigate('/admin/login')} className="hover:text-white transition-colors cursor-pointer">
+              Admin
+            </button>
+            <span>|</span>
             <button onClick={() => onNavigate('/legal/privacy')} className="hover:text-white transition-colors cursor-pointer">
               Privacy Policy
             </button>

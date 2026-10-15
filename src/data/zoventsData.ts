@@ -48,7 +48,7 @@ export const SITE_INFO = {
       label: 'Registered Office',
       address: 'EPO-07-Unit No 012 - 014, 7th Floor, Emerald Plaza, Sector-65, Gurgaon-122101',
       phone: '+91-8800753816',
-      landline: '+91 124-4807367',
+      landline: undefined as string | undefined,
       email: 'info@zovents.com'
     },
     {
@@ -56,6 +56,7 @@ export const SITE_INFO = {
       label: 'Corporate Office',
       address: '13th Floor, Unit No.1319, Bengal Eco Intelligent Park, EM Block, Sector V, Salt Lake, Bidhannagar, Kolkata, West Bengal 700091',
       phone: '+91-8800753816',
+      landline: undefined as string | undefined,
       email: 'info@zovents.com'
     }
   ],

@@ -3,19 +3,12 @@ import { ArrowUpRight, Compass, Moon, MapPin, Calendar, Check } from 'lucide-rea
 import { HOLIDAY_DESTINATIONS } from '../data/content';
 import { HolidayDestination } from '../types';
 import { ItineraryModal } from '../components/ItineraryModal';
-import { useSEO } from '../hooks/useSEO';
 
 interface HolidayPageProps {
   onOpenQuote: (destinationTitle?: string) => void;
 }
 
 export const HolidayPage: React.FC<HolidayPageProps> = ({ onOpenQuote }) => {
-  useSEO({
-    title: 'Curated Corporate & Private Holidays',
-    description: 'Hand-crafted holiday itineraries and incentive travel experiences across India and beyond — planned by ZOVENT with precision and care.',
-    path: '/holiday',
-  });
-
   const [selectedDest, setSelectedDest] = useState<HolidayDestination | null>(null);
 
   return (

@@ -1,15 +1,9 @@
 import React, { useState } from 'react';
 import { ArrowUpRight, CheckCircle2, Mail, Phone, MapPin, Clock, AlertCircle } from 'lucide-react';
 import { SITE_INFO } from '../data/zoventsData';
-import { useSEO } from '../hooks/useSEO';
+import { submitEnquiry, ApiError } from '../lib/api';
 
 export const ContactPage: React.FC = () => {
-  useSEO({
-    title: 'Contact Us',
-    description: 'Get in touch with ZOVENT to plan your next corporate event, MICE programme or business travel itinerary. Offices in Gurugram and Kolkata.',
-    path: '/contact',
-  });
-
   const [formData, setFormData] = useState({
     fullName: '',
     company: '',
@@ -24,6 +18,7 @@ export const ContactPage: React.FC = () => {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState('');
 
   const eventTypes = [
     'Corporate Conference / Meeting',
@@ -49,7 +44,7 @@ export const ContactPage: React.FC = () => {
     return errs;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const valErrors = validate();
     if (Object.keys(valErrors).length > 0) {
@@ -58,11 +53,18 @@ export const ContactPage: React.FC = () => {
     }
 
     setErrors({});
+    setSubmitError('');
     setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      await submitEnquiry(formData);
       setIsSubmitted(true);
-    }, 850);
+    } catch (err) {
+      setSubmitError(
+        err instanceof ApiError ? err.message : 'Unable to submit your enquiry right now. Please try again or call us directly.'
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -288,6 +290,12 @@ export const ContactPage: React.FC = () => {
                     </p>
                   )}
                 </div>
+
+                {submitError && (
+                  <p className="text-[11px] text-red-600 flex items-center gap-1">
+                    <AlertCircle size={12} /> {submitError}
+                  </p>
+                )}
 
                 {/* Submit button */}
                 <button
