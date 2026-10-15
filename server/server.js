@@ -17,7 +17,19 @@ dotenv.config({ path: path.join(rootDir, '.env') });
 
 const app = express();
 
-app.use(cors());
+// Without CLIENT_URL set, CORS is wide open (fine for local dev). Once a
+// frontend is deployed, set CLIENT_URL in the environment to lock requests
+// down to that origin — localhost is always allowed on top of it for dev.
+const clientUrl = process.env.CLIENT_URL;
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin || !clientUrl) return callback(null, true);
+      const allowed = origin === clientUrl || /^https?:\/\/localhost(:\d+)?$/.test(origin);
+      callback(allowed ? null : new Error('Not allowed by CORS'), allowed);
+    },
+  })
+);
 app.use(express.json());
 
 app.use('/uploads', express.static(path.join(rootDir, 'server', 'uploads')));
