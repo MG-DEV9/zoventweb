@@ -58,6 +58,32 @@ export const PaymentPage: React.FC<PaymentPageProps> = ({ initialReference, onNa
     [activeBase, payment]
   );
 
+  // Once an invoice is fully settled, show what was actually collected
+  // (gross + taxes/charges actually charged on each payment) instead of the
+  // "next amount due" breakdown above, which would otherwise show zeros.
+  const paidSummary = useMemo(() => {
+    if (!payment || !payment.paidAmount) return null;
+    const chargeOpts = {
+      gstApplicable: payment.gstApplicable,
+      gstRate: payment.gstRate,
+      gatewayFeeApplicable: payment.gatewayFeeApplicable,
+      gatewayFeeRate: payment.gatewayFeeRate,
+    };
+    const gross = payment.paidAmount;
+    const charges = payment.installments?.length
+      ? payment.installments
+          .filter((i) => i.status === 'Paid')
+          .reduce((sum, i) => {
+            const c = computeCharges(i.amount, chargeOpts);
+            return sum + c.fee + c.gst;
+          }, 0)
+      : (() => {
+          const c = computeCharges(gross, chargeOpts);
+          return c.fee + c.gst;
+        })();
+    return { gross, charges, total: gross + charges };
+  }, [payment]);
+
   const fetchPayment = useCallback(
     async (id: string) => {
       const trimmed = id.trim().toUpperCase();
@@ -438,34 +464,53 @@ export const PaymentPage: React.FC<PaymentPageProps> = ({ initialReference, onNa
                   </div>
                 )}
 
-                <div className="py-4 space-y-2.5 text-[13px] border-t border-b border-[#E8E2D9]">
-                  <div className="flex justify-between items-baseline text-[#5C5556]">
-                    <span className="text-[11px] uppercase tracking-wide">
-                      {hasInstallments && selectedInstIdx >= 0 ? payment.installments![selectedInstIdx].label : 'Base amount'}
-                    </span>
-                    <span className="text-[15px] font-medium text-[#1E1919]">{fmt(activeBase)}</span>
-                  </div>
-                  {!!payment.paidAmount && payment.paidAmount > 0 && (
-                    <div className="flex justify-between items-baseline">
-                      <span className="text-[11px] uppercase tracking-wide" style={{ color: '#15803d' }}>
-                        Already Paid
-                      </span>
-                      <span className="text-[15px] font-medium" style={{ color: '#15803d' }}>
-                        {fmt(payment.paidAmount)}
-                      </span>
-                    </div>
-                  )}
-                  {(amountBreakdown.fee > 0 || amountBreakdown.gst > 0) && (
+                {allPaid && paidSummary ? (
+                  <div className="py-4 space-y-2.5 text-[13px] border-t border-b border-[#E8E2D9]">
                     <div className="flex justify-between items-baseline text-[#5C5556]">
-                      <span className="text-[11px] uppercase tracking-wide">Incl. Taxes &amp; Charges</span>
-                      <span className="text-[15px] font-medium text-[#1E1919]">{fmt(amountBreakdown.fee + amountBreakdown.gst)}</span>
+                      <span className="text-[11px] uppercase tracking-wide">Gross Amount</span>
+                      <span className="text-[15px] font-medium text-[#1E1919]">{fmt(paidSummary.gross)}</span>
                     </div>
-                  )}
-                  <div className="flex justify-between items-baseline pt-2.5 font-semibold text-[20px] text-[#1E1919] border-t border-[#E8E2D9]">
-                    <span className="text-[13px] uppercase tracking-wide font-semibold">Total Payable</span>
-                    <span>{fmt(amountBreakdown.total)}</span>
+                    {paidSummary.charges > 0 && (
+                      <div className="flex justify-between items-baseline text-[#5C5556]">
+                        <span className="text-[11px] uppercase tracking-wide">Taxes &amp; Charges</span>
+                        <span className="text-[15px] font-medium text-[#1E1919]">{fmt(paidSummary.charges)}</span>
+                      </div>
+                    )}
+                    <div className="flex justify-between items-baseline pt-2.5 font-semibold text-[20px] text-[#1E1919] border-t border-[#E8E2D9]">
+                      <span className="text-[13px] uppercase tracking-wide font-semibold">Grand Total Paid</span>
+                      <span>{fmt(paidSummary.total)}</span>
+                    </div>
                   </div>
-                </div>
+                ) : (
+                  <div className="py-4 space-y-2.5 text-[13px] border-t border-b border-[#E8E2D9]">
+                    <div className="flex justify-between items-baseline text-[#5C5556]">
+                      <span className="text-[11px] uppercase tracking-wide">
+                        {hasInstallments && selectedInstIdx >= 0 ? payment.installments![selectedInstIdx].label : 'Base amount'}
+                      </span>
+                      <span className="text-[15px] font-medium text-[#1E1919]">{fmt(activeBase)}</span>
+                    </div>
+                    {!!payment.paidAmount && payment.paidAmount > 0 && (
+                      <div className="flex justify-between items-baseline">
+                        <span className="text-[11px] uppercase tracking-wide" style={{ color: '#15803d' }}>
+                          Already Paid
+                        </span>
+                        <span className="text-[15px] font-medium" style={{ color: '#15803d' }}>
+                          {fmt(payment.paidAmount)}
+                        </span>
+                      </div>
+                    )}
+                    {(amountBreakdown.fee > 0 || amountBreakdown.gst > 0) && (
+                      <div className="flex justify-between items-baseline text-[#5C5556]">
+                        <span className="text-[11px] uppercase tracking-wide">Incl. Taxes &amp; Charges</span>
+                        <span className="text-[15px] font-medium text-[#1E1919]">{fmt(amountBreakdown.fee + amountBreakdown.gst)}</span>
+                      </div>
+                    )}
+                    <div className="flex justify-between items-baseline pt-2.5 font-semibold text-[20px] text-[#1E1919] border-t border-[#E8E2D9]">
+                      <span className="text-[13px] uppercase tracking-wide font-semibold">Total Payable</span>
+                      <span>{fmt(amountBreakdown.total)}</span>
+                    </div>
+                  </div>
+                )}
               </>
             ) : (
               <div className="min-h-[320px] flex items-center justify-center text-center">

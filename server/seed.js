@@ -28,7 +28,7 @@ async function seed() {
     {
       paymentId: 'ZOV-MICE-0001',
       clientName: 'Acme India Pvt. Ltd.',
-      clientEmail: 'events@acmeindia.com',
+      clientEmail: 'info@acmeindia.com',
       clientPhone: '9876543210',
       service: 'MICE Events',
       description: 'Annual Leadership Summit & Gala — Gurugram, 400 delegates',
