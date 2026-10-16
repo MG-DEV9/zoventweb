@@ -501,7 +501,7 @@ export const PaymentPage: React.FC<PaymentPageProps> = ({ initialReference, onNa
                     )}
                     {(amountBreakdown.fee > 0 || amountBreakdown.gst > 0) && (
                       <div className="flex justify-between items-baseline text-[#5C5556]">
-                        <span className="text-[11px] uppercase tracking-wide">Incl. Taxes &amp; Charges</span>
+                        <span className="text-[11px] uppercase tracking-wide">Taxes &amp; Charges</span>
                         <span className="text-[15px] font-medium text-[#1E1919]">{fmt(amountBreakdown.fee + amountBreakdown.gst)}</span>
                       </div>
                     )}
