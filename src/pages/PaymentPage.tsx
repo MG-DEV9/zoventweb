@@ -388,11 +388,11 @@ export const PaymentPage: React.FC<PaymentPageProps> = ({ initialReference, onNa
                 <div className="grid grid-cols-2 gap-x-5 gap-y-4 text-[13px] mb-5">
                   <div>
                     <p className="text-[9px] uppercase tracking-widest mb-1 text-[#8C8485]">Client</p>
-                    <p className="font-semibold">{payment.clientName}</p>
+                    <p className="font-normal">{payment.clientName}</p>
                   </div>
                   <div>
                     <p className="text-[9px] uppercase tracking-widest mb-1 text-[#8C8485]">Service</p>
-                    <p className="font-semibold">{payment.service}</p>
+                    <p className="font-normal">{payment.service}</p>
                   </div>
                   <div className="col-span-2">
                     <p className="text-[9px] uppercase tracking-widest mb-1 text-[#8C8485]">Description</p>
