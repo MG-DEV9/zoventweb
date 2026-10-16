@@ -250,15 +250,23 @@ export const AdminPayments: React.FC<AdminPaymentsProps> = ({ onNavigate }) => {
   };
 
   // ── Installment helpers ────────────────────────────────────────────────────
+  // Auto-generated labels follow "Advance 1", "Advance 2", ..., "Final Payment"
+  // for the last one. Re-applied on add/remove so the last installment always
+  // reads "Final Payment" — but only overwrites labels that still look
+  // auto-generated, so a label the admin typed by hand is left alone.
+  const isAutoLabel = (label: string) => !label.trim() || label === 'Final Payment' || /^(Advance|Installment) \d+$/.test(label);
+  const relabelInstallments = (list: Installment[]): Installment[] =>
+    list.map((inst, idx) => {
+      const autoLabel = idx === list.length - 1 ? 'Final Payment' : `Advance ${idx + 1}`;
+      return isAutoLabel(inst.label) ? { ...inst, label: autoLabel } : inst;
+    });
+
   const addInstallment = () =>
-    setInstForm((prev) => [
-      ...prev,
-      { label: `Installment ${prev.length + 1}`, amount: 0, dueDate: form.dueDate, status: 'Pending' },
-    ]);
+    setInstForm((prev) => relabelInstallments([...prev, { label: '', amount: 0, dueDate: form.dueDate, status: 'Pending' }]));
   const updateInst = (idx: number, field: keyof Installment, value: string | number) => {
     setInstForm((prev) => prev.map((inst, i) => (i === idx ? { ...inst, [field]: value } : inst)));
   };
-  const removeInst = (idx: number) => setInstForm((prev) => prev.filter((_, i) => i !== idx));
+  const removeInst = (idx: number) => setInstForm((prev) => relabelInstallments(prev.filter((_, i) => i !== idx)));
 
   // ── Filter ────────────────────────────────────────────────────────────────
   const filtered = payments.filter((p) => {
