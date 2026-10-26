@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ArrowUpRight, CheckCircle2, Mail, Phone, MapPin, Clock, AlertCircle } from 'lucide-react';
 import { SITE_INFO } from '../data/zoventsData';
-import { submitEnquiry, ApiError } from '../lib/api';
+import { submitLead, ApiError } from '../lib/api';
 
 export const ContactPage: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -27,6 +27,7 @@ export const ContactPage: React.FC = () => {
     'Brand Activation',
     'Award Ceremony / Gala',
     'Corporate Travel',
+    'Holidays',
     'Other'
   ];
 
@@ -56,7 +57,17 @@ export const ContactPage: React.FC = () => {
     setSubmitError('');
     setIsSubmitting(true);
     try {
-      await submitEnquiry(formData);
+      await submitLead({
+        fullName: formData.fullName,
+        company: formData.company,
+        email: formData.email,
+        phone: formData.phone,
+        eventType: formData.eventType,
+        expectedDate: formData.expectedDate,
+        estimatedDelegates: formData.estimatedDelegates,
+        tellUsMore: formData.message,
+        source: 'zovents.com',
+      });
       setIsSubmitted(true);
     } catch (err) {
       setSubmitError(
@@ -258,7 +269,7 @@ export const ContactPage: React.FC = () => {
 
                   <div>
                     <label className="block text-[10px] uppercase tracking-[0.16em] font-semibold text-[#666061] mb-2">
-                      Estimated Delegates
+                      Estimated Pax.
                     </label>
                     <input
                       type="text"
@@ -324,7 +335,7 @@ export const ContactPage: React.FC = () => {
                 WITHIN 24 HOURS.
               </h3>
               <p className="text-xs text-white/70 leading-relaxed mb-6">
-                All enquiries are reviewed directly by a event specialist .
+                All enquiries are reviewed directly by a event & Holiday specialist .
               </p>
 
               <div className="pt-6 border-t border-white/15">

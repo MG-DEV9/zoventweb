@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { X, ArrowUpRight, CheckCircle2, AlertCircle } from 'lucide-react';
 import { SITE_INFO } from '../data/zoventsData';
+import { submitLead, ApiError } from '../lib/api';
 
 interface ProposalModalProps {
   isOpen: boolean;
@@ -23,6 +24,7 @@ export const ProposalModal: React.FC<ProposalModalProps> = ({ isOpen, prefillSer
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState('');
 
   useEffect(() => {
     if (prefillService) {
@@ -39,7 +41,7 @@ export const ProposalModal: React.FC<ProposalModalProps> = ({ isOpen, prefillSer
     'Brand Activation',
     'Award Ceremony / Gala',
     'Corporate Travel',
-    'Private Holiday / Travel',
+    'Holidays',
     'Other'
   ];
 
@@ -53,7 +55,7 @@ export const ProposalModal: React.FC<ProposalModalProps> = ({ isOpen, prefillSer
     return errs;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const valErrors = validate();
     if (Object.keys(valErrors).length > 0) {
@@ -61,11 +63,28 @@ export const ProposalModal: React.FC<ProposalModalProps> = ({ isOpen, prefillSer
       return;
     }
 
+    setSubmitError('');
     setSubmitting(true);
-    setTimeout(() => {
-      setSubmitting(false);
+    try {
+      await submitLead({
+        fullName: formData.fullName,
+        company: formData.company,
+        email: formData.email,
+        phone: formData.phone,
+        eventType: formData.eventType,
+        expectedDate: formData.expectedDate,
+        estimatedDelegates: formData.estimatedDelegates,
+        tellUsMore: formData.message,
+        source: 'zovents.com',
+      });
       setSubmitted(true);
-    }, 800);
+    } catch (err) {
+      setSubmitError(
+        err instanceof ApiError ? err.message : 'Unable to submit your enquiry right now. Please try again or call us directly.'
+      );
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -92,7 +111,7 @@ export const ProposalModal: React.FC<ProposalModalProps> = ({ isOpen, prefillSer
             Start a project with ZOVENT.
           </h2>
           <p className="text-xs text-[#5C5556] mt-1">
-            Response within 24 hours from a senior project director.
+            Response within 24 hours from a senior Executive.
           </p>
         </div>
 
@@ -228,6 +247,12 @@ export const ProposalModal: React.FC<ProposalModalProps> = ({ isOpen, prefillSer
               />
               {errors.message && <p className="text-[10px] text-red-600 mt-1">{errors.message}</p>}
             </div>
+
+            {submitError && (
+              <p className="text-[11px] text-red-600 flex items-center gap-1.5">
+                <AlertCircle size={12} /> {submitError}
+              </p>
+            )}
 
             <button
               type="submit"

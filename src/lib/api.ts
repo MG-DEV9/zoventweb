@@ -136,9 +136,13 @@ export const clearAdminSession = () => {
   localStorage.removeItem(ADMIN_TOKEN_KEY);
 };
 
-// ── Contact / Enquiries (separate from the admin `api` object — used by the
-// public contact form, which doesn't need an auth token) ──────────────────────
-export interface EnquiryPayload {
+// ── Lead webhook — posts enquiries from any site (zovent, mangalgatha, …)
+// straight into the shared CRM, which doesn't need an auth token here since
+// it's gated by a shared API key instead ───────────────────────────────────
+const LEAD_WEBHOOK_URL = import.meta.env.VITE_LEAD_WEBHOOK_URL as string;
+const LEAD_WEBHOOK_KEY = import.meta.env.VITE_LEAD_WEBHOOK_KEY as string;
+
+export interface LeadPayload {
   fullName: string;
   company: string;
   email: string;
@@ -146,20 +150,21 @@ export interface EnquiryPayload {
   eventType: string;
   expectedDate: string;
   estimatedDelegates: string;
-  message: string;
+  tellUsMore: string;
+  source: string;
 }
 
-export async function submitEnquiry(payload: EnquiryPayload) {
-  const response = await fetch(`${API_URL}/contact`, {
+export async function submitLead(payload: LeadPayload) {
+  const response = await fetch(LEAD_WEBHOOK_URL, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'application/json', 'x-api-key': LEAD_WEBHOOK_KEY },
     body: JSON.stringify(payload),
   });
-  const body = await response.json().catch(() => ({} as ApiErrorPayload));
-  if (!response.ok) {
-    throw new ApiError((body as ApiErrorPayload).message || `Request failed (${response.status})`, response.status);
+  const body = await response.json().catch(() => ({} as { success?: boolean; error?: string }));
+  if (!response.ok || !(body as { success?: boolean }).success) {
+    throw new ApiError((body as { error?: string }).error || `Request failed (${response.status})`, response.status);
   }
-  return body;
+  return body as { success: true; leadId: string };
 }
 
 // ── Holiday Packages (public) ─────────────────────────────────────────────────

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Check, CheckCircle2, RefreshCw, AlertCircle, ShieldCheck } from 'lucide-react';
+import { submitLead, ApiError } from '../lib/api';
 
 interface HeroLeadFormProps {
   sourceContext?: string;
@@ -18,6 +19,7 @@ export const HeroLeadForm: React.FC<HeroLeadFormProps> = ({ sourceContext = 'Gen
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState('');
 
   const handleCaptchaClick = () => {
     if (captchaChecked) return;
@@ -52,7 +54,7 @@ export const HeroLeadForm: React.FC<HeroLeadFormProps> = ({ sourceContext = 'Gen
     return errs;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const valErrors = validate();
     if (Object.keys(valErrors).length > 0) {
@@ -61,11 +63,28 @@ export const HeroLeadForm: React.FC<HeroLeadFormProps> = ({ sourceContext = 'Gen
     }
 
     setErrors({});
+    setSubmitError('');
     setSubmitting(true);
-    setTimeout(() => {
-      setSubmitting(false);
+    try {
+      await submitLead({
+        fullName: formData.name,
+        company: formData.company,
+        email: formData.email,
+        phone: formData.mobile,
+        eventType: sourceContext,
+        expectedDate: '',
+        estimatedDelegates: '',
+        tellUsMore: `Quick enquiry via ${sourceContext} form`,
+        source: 'zovents.com',
+      });
       setSubmitted(true);
-    }, 900);
+    } catch (err) {
+      setSubmitError(
+        err instanceof ApiError ? err.message : 'Unable to submit your enquiry right now. Please try again or call us directly.'
+      );
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -238,6 +257,12 @@ export const HeroLeadForm: React.FC<HeroLeadFormProps> = ({ sourceContext = 'Gen
               </p>
             )}
           </div>
+
+          {submitError && (
+            <p className="text-[11px] text-red-600 flex items-center gap-1 justify-center">
+              <AlertCircle size={12} /> {submitError}
+            </p>
+          )}
 
           {/* SUBMIT Button matching screenshot styling */}
           <div className="pt-1 text-center">
