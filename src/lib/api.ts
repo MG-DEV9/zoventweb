@@ -136,11 +136,10 @@ export const clearAdminSession = () => {
   localStorage.removeItem(ADMIN_TOKEN_KEY);
 };
 
-// ── Lead webhook — posts enquiries from any site (zovent, mangalgatha, …)
-// straight into the shared CRM, which doesn't need an auth token here since
-// it's gated by a shared API key instead ───────────────────────────────────
-const LEAD_WEBHOOK_URL = import.meta.env.VITE_LEAD_WEBHOOK_URL as string;
-const LEAD_WEBHOOK_KEY = import.meta.env.VITE_LEAD_WEBHOOK_KEY as string;
+// ── Lead capture — writes enquiries from any site (zovent, mangalgatha, …)
+// straight into the shared CRM's Firestore `leads` collection via the REST
+// API, so the superadmin panel can triage and assign them ───────────────────
+const FIRESTORE_LEADS_URL = 'https://firestore.googleapis.com/v1/projects/zovent-crm/databases/(default)/documents/leads';
 
 export interface LeadPayload {
   fullName: string;
@@ -155,16 +154,43 @@ export interface LeadPayload {
 }
 
 export async function submitLead(payload: LeadPayload) {
-  const response = await fetch(LEAD_WEBHOOK_URL, {
+  const leadId = `ZV-${Math.floor(100 + Math.random() * 900)}`;
+  const now = new Date().toISOString();
+
+  const response = await fetch(FIRESTORE_LEADS_URL, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'x-api-key': LEAD_WEBHOOK_KEY },
-    body: JSON.stringify(payload),
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      fields: {
+        leadId: { stringValue: leadId },
+        name: { stringValue: payload.fullName },
+        contactNumber: { stringValue: payload.phone },
+        email: { stringValue: payload.email },
+        company: { stringValue: payload.company || '' },
+        department: { stringValue: 'M.I.C.E/Corporate' },
+        typeOfEvent: { stringValue: payload.eventType || 'Corporate Event' },
+        eventDate: payload.expectedDate ? { stringValue: payload.expectedDate } : { nullValue: null },
+        noOfPax: payload.estimatedDelegates ? { stringValue: payload.estimatedDelegates } : { stringValue: '' },
+        otherRequirements: { stringValue: payload.tellUsMore || '' },
+        referredBy: { stringValue: 'website' },
+        referrerName: { stringValue: 'Zovents.com' },
+        source: { stringValue: payload.source },
+        assignedTo: { nullValue: null },
+        isAssigned: { booleanValue: false },
+        status: { stringValue: 'new' },
+        result: { stringValue: '' },
+        remarks: { stringValue: `Website proposal from Zovents.com. Details: ${payload.tellUsMore || ''}` },
+        createdAt: { timestampValue: now },
+        updatedAt: { timestampValue: now },
+      },
+    }),
   });
-  const body = await response.json().catch(() => ({} as { success?: boolean; error?: string }));
-  if (!response.ok || !(body as { success?: boolean }).success) {
-    throw new ApiError((body as { error?: string }).error || `Request failed (${response.status})`, response.status);
+
+  const body = await response.json().catch(() => ({} as { error?: { message?: string } }));
+  if (!response.ok) {
+    throw new ApiError((body as { error?: { message?: string } }).error?.message || `Request failed (${response.status})`, response.status);
   }
-  return body as { success: true; leadId: string };
+  return { success: true as const, leadId };
 }
 
 // ── Holiday Packages (public) ─────────────────────────────────────────────────
