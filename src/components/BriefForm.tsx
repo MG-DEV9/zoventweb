@@ -133,7 +133,7 @@ export const BriefForm: React.FC<BriefFormProps> = ({ prefillService, onSubmitte
                   Brief Received
                 </h4>
                 <p className="text-sm text-[#5C5556] max-w-md mx-auto leading-relaxed mb-6">
-                  Thank you, {formData.name}. A dedicated ZOVENT partner director has received your mandate outline and will contact you within one business day.
+                  Thank you, {formData.name}. A dedicated ZOVENT Executive has received your mandate outline and will contact you within one business day.
                 </p>
                 <button
                   onClick={() => {

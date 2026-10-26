@@ -20,7 +20,7 @@ export const PrivateHolidays: React.FC<PrivateHolidaysProps> = ({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 mb-14 lg:mb-16 items-end">
           <div className="lg:col-span-7">
             <p className="text-[11px] md:text-xs uppercase tracking-[0.2em] font-semibold text-[#8C8485] mb-3">
-              Private Holidays, Well Paced
+              Holidays, Well Paced
             </p>
             <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-[#1E1919] font-normal leading-[1.08] text-balance">
               Go further. Never hurried.

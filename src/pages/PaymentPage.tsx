@@ -224,7 +224,7 @@ export const PaymentPage: React.FC<PaymentPageProps> = ({ initialReference, onNa
           <p className="text-[11px] uppercase tracking-[0.22em] font-semibold text-[#8C8485] mb-4">[ SECURE PAYMENT ]</p>
           <h1 className="font-serif text-4xl sm:text-6xl lg:text-7xl text-[#1E1919] font-normal leading-[1.08] mb-6">PAY ZOVENT.</h1>
           <p className="text-base sm:text-lg text-[#524B4C] max-w-2xl mx-auto leading-relaxed">
-            Enter your payment reference ID to load your invoice details and pay securely via Razorpay.
+            Enter your payment reference ID to load your invoice details and pay securely.
           </p>
         </div>
       </section>
@@ -350,7 +350,7 @@ export const PaymentPage: React.FC<PaymentPageProps> = ({ initialReference, onNa
             <div className="flex items-start gap-3 mt-5 pt-4 border-t border-[rgba(82,8,24,0.1)]">
               <span style={{ color: RED }}>🔒</span>
               <p className="text-[11px] leading-relaxed text-[#7A7374]">
-                Secured by Razorpay. We never store your card or UPI credentials.
+               We never store your card or UPI credentials.
               </p>
             </div>
           </div>

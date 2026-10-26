@@ -101,7 +101,7 @@ export const HolidayPage: React.FC<HolidayPageProps> = ({ onOpenQuote }) => {
           </div>
 
           <button
-            onClick={() => onOpenQuote('Private Holiday / Travel')}
+            onClick={() => onOpenQuote('Holidays')}
             className="bg-white hover:bg-[#F2ECE3] text-[#1E1919] text-xs uppercase font-medium tracking-widest px-8 py-4 shrink-0 transition-colors cursor-pointer"
           >
             Design a Custom Journey →

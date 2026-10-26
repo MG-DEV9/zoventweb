@@ -46,9 +46,9 @@ export const SITE_INFO = {
     {
       city: 'GURUGRAM',
       label: 'Registered Office',
-      address: 'EPO-07-Unit No 012 - 014, 7th Floor, Emerald Plaza, Sector-65, Gurgaon-122101',
+      address: 'EPO-07-Unit No-014, 7th Floor, Emerald Plaza, Sector-65, Gurgaon-122101',
       phone: '+91-8800753816',
-      landline: undefined as string | undefined,
+      landline: '+91-124-4807367',
       email: 'info@zovents.com'
     },
     {
@@ -206,9 +206,9 @@ export const SERVICES_CATALOG: ServiceDetail[] = [
     image: '/images/Services/corporate-travel.png',
     tag: 'TRAVEL THAT WORKS AROUND YOU',
     title: 'Corporate Travel ',
-    heroTagline: 'From seamless business travel to bespoke group getaways, managed with precision.',
-    shortDesc: 'From seamless business travel to bespoke group getaways, Zovent manages every journey with precision, comfort and care across India and international destinations.',
-    overview: 'From seamless business travel to bespoke group getaways, Zovent manages every journey with precision, comfort and care. We curate corporate travel, incentive trips, luxury holidays and group travel experiences across India and international destinations — tailored around your people, purpose and preferences.',
+    heroTagline: 'From seamless business travel to group getaways, managed with precision.',
+    shortDesc: 'From seamless business travel to group getaways, Zovent manages every journey with precision, comfort and care across India and international destinations.',
+    overview: 'From seamless business travel to group getaways, Zovent manages every journey with precision, comfort and care. We curate corporate travel, incentive trips, luxury holidays and group travel experiences across India and international destinations — tailored around your people, purpose and preferences.',
     bulletPoints: [
       { title: 'Corporate Travel Management (CTM)', desc: 'End-to-end business travel solutions including flights, hotels, transfers, travel coordination and traveller support.' },
       { title: 'Group & Incentive Travel', desc: 'Reward your teams with thoughtfully planned incentive trips and group travel experiences designed around your goals.' },

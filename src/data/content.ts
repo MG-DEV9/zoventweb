@@ -80,7 +80,7 @@ export const DROPDOWN_SERVICES = [
 export const HOLIDAY_DESTINATIONS: HolidayDestination[] = [
   {
     id: 'bhutan',
-    region: 'HIMALAYA',
+    region: 'HIMALAYAS',
     nights: '9 NIGHTS',
     title: 'Bhutan, In Depth',
     summary: 'Valley walks, monastery stays and slow days in Punakha.',
@@ -156,7 +156,7 @@ export const HOLIDAY_DESTINATIONS: HolidayDestination[] = [
   },
   {
     id: 'kashmir',
-    region: 'HIMALAYA, INDIA',
+    region: 'HIMALAYAS, INDIA',
     nights: '5 NIGHTS / 6 DAYS',
     title: 'Kashmir, Paradise Revisited',
     summary: 'Houseboats on Dal Lake, alpine meadows and the gardens of Srinagar.',
@@ -346,9 +346,9 @@ export const HOLIDAY_DESTINATIONS: HolidayDestination[] = [
   },
   {
     id: 'ladakh',
-    region: 'HIMALAYA, INDIA',
+    region: 'HIMALAYAS, INDIA',
     nights: '6 NIGHTS / 7 DAYS',
-    title: 'Ladakh, High Desert Himalaya',
+    title: 'Ladakh, High Desert Himalayas',
     summary: 'Monasteries, high-altitude lakes and the moonscape passes of Leh.',
     image: '/images/Holiday/ladakh.jpg',
     highlights: [

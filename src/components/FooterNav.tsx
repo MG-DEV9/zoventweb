@@ -175,7 +175,7 @@ export const FooterNav: React.FC<FooterNavProps> = ({ onNavigate, onOpenProposal
         {/* Bottom Giant Brand Wordmark */}
         <div className="pt-12 pb-8 flex flex-col md:flex-row items-baseline justify-between gap-6 border-b border-white/10">
           <div className="font-serif text-6xl sm:text-7xl md:text-8xl lg:text-[110px] xl:text-[130px] font-bold tracking-tight text-white/95 leading-none select-none">
-            ZOVENT.
+            ZOVENT
           </div>
 
           <div className="font-serif italic text-base sm:text-lg lg:text-xl text-[#E3CBD2] max-w-xs md:text-right font-light">
