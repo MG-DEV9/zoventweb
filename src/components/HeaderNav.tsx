@@ -48,7 +48,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ currentPath, onNavigate, o
     { label: 'HOME', path: '/' },
     { label: 'ABOUT', path: '/about' },
     { label: 'SERVICES', path: '/services', hasDropdown: true },
-    { label: 'HOLIDAY', path: '/holiday' },
+    { label: 'HOLIDAYS', path: '/holiday' },
     { label: 'BLOG', path: '/blog' },
     { label: 'GALLERY', path: '/gallery' },
     { label: 'CONTACT', path: '/contact' },
@@ -61,7 +61,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ currentPath, onNavigate, o
       <div className="bg-[#520818] text-white text-[11px] font-medium tracking-widest uppercase border-b border-[#350710]">
         <div className="max-w-[1440px] mx-auto px-6 lg:px-12 h-9 flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <span className="text-[#D7B4BC] hidden sm:inline"> M.I.C.E · CORPORATE EVENTS · HOLIDAY</span>
+            <span className="text-[#D7B4BC] hidden sm:inline"> M.I.C.E · CORPORATE EVENTS · HOLIDAYs</span>
             <span className="text-white/40 hidden sm:inline">|</span>
             <a 
               href={SITE_INFO.whatsappUrl} 

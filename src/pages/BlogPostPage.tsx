@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowLeft, ArrowUpRight, Clock, Calendar, User, Share2 } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight, Clock, User, Share2 } from 'lucide-react';
 import { BlogPost, BLOG_POSTS } from '../data/zoventsData';
 
 interface BlogPostPageProps {
@@ -29,8 +29,6 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, onNavigate, on
           <div className="flex flex-wrap items-center gap-3 text-xs uppercase tracking-wider text-[#8C8485] font-semibold mb-4">
             <span className="text-[#520818]">[ {post.category} ]</span>
             <span>·</span>
-            <span className="flex items-center gap-1"><Calendar size={13} /> {post.date}</span>
-            <span>·</span>
             <span className="flex items-center gap-1"><Clock size={13} /> {post.readTime}</span>
           </div>
 
@@ -41,13 +39,6 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, onNavigate, on
           <p className="text-base sm:text-xl text-[#524B4C] font-light leading-relaxed mb-6">
             {post.summary}
           </p>
-
-          <div className="pt-6 border-t border-[#E8E2D9] flex items-center justify-between text-xs text-[#736B6C]">
-            <div className="flex items-center gap-2">
-              <span className="font-semibold text-[#1E1919]">{post.author}</span>
-              <span>— Senior Event Strategist at Zovent</span>
-            </div>
-          </div>
 
         </div>
       </section>
@@ -91,24 +82,6 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, onNavigate, on
                 </div>
               );
             })}
-          </div>
-
-          {/* Author Box */}
-          <div className="mt-16 pt-10 border-t border-[#E8E2D9] bg-[#FCFBF8] border p-8 flex flex-col sm:flex-row items-start gap-6">
-            <div className="w-14 h-14 rounded-full bg-[#520818] text-white flex items-center justify-center font-serif text-2xl shrink-0">
-              {post.author.charAt(0)}
-            </div>
-            <div>
-              <p className="text-xs uppercase tracking-wider font-bold text-[#8C8485] mb-1">
-                Written by
-              </p>
-              <h3 className="font-serif text-2xl text-[#1E1919] font-normal mb-2">
-                {post.author}
-              </h3>
-              <p className="text-xs text-[#5C5556] leading-relaxed">
-                Senior Event Strategist at Zovent with 10+ years designing large-scale corporate events and MICE programmes across Asia and international markets.
-              </p>
-            </div>
           </div>
 
           {/* Consultation CTA Banner */}

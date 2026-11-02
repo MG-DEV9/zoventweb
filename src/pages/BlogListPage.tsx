@@ -57,10 +57,7 @@ export const BlogListPage: React.FC<BlogListPageProps> = ({ onNavigate }) => {
             {featured.summary}
           </p>
 
-          <div className="flex items-center justify-between pt-6 border-t border-[#EDE8E1]">
-            <p className="text-xs text-[#736B6C]">
-              By <span className="font-semibold text-[#1E1919]">{featured.author}</span> · {featured.date}
-            </p>
+          <div className="flex items-center justify-end pt-6 border-t border-[#EDE8E1]">
             <div className="flex items-center gap-1.5 text-xs uppercase tracking-widest font-semibold text-[#520818] group-hover:translate-x-1 transition-transform">
               <span>Read Full Guide</span>
               <ArrowUpRight size={15} />
@@ -123,10 +120,7 @@ export const BlogListPage: React.FC<BlogListPageProps> = ({ onNavigate }) => {
                 </p>
               </div>
 
-              <div className="pt-4 border-t border-[#F0EBE3] flex items-center justify-between">
-                <span className="text-[11px] text-[#7A7374]">
-                  {post.author} · {post.date}
-                </span>
+              <div className="pt-4 border-t border-[#F0EBE3] flex items-center justify-end">
                 <ArrowUpRight size={15} className="text-[#8C8485] group-hover:text-[#520818] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </div>
             </div>
