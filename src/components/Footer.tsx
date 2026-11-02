@@ -95,8 +95,8 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             </p>
             <ul className="space-y-3 text-xs tracking-wide text-white/75">
               <li>
-                <a href="mailto:hello@zovent.com" className="hover:text-white lowercase transition-colors">
-                  info@zovent.com
+                <a href="mailto:hello@zovents.com" className="hover:text-white lowercase transition-colors">
+                  info@zovents.com
                 </a>
               </li>
               <li>

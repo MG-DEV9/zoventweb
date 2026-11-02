@@ -111,7 +111,7 @@ export const ProposalModal: React.FC<ProposalModalProps> = ({ isOpen, prefillSer
             Start a project with ZOVENT.
           </h2>
           <p className="text-xs text-[#5C5556] mt-1">
-            Response within 24 hours from a senior Executive.
+            Response within 24 hours from a senior executive.
           </p>
         </div>
 
