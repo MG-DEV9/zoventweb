@@ -23,6 +23,8 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({ service, o
             src={service.image}
             alt={service.title}
             className=" w-full h-full object-cover"
+            loading="eager"
+            fetchPriority="high"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#1C0409]/90 via-[#1C0409]/70 to-[#1C0409]/40" />
         </div>
@@ -88,6 +90,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({ service, o
                   src={service.bodyImage}
                   alt={service.title}
                   className="w-full h-full object-cover"
+                  loading="lazy"
                 />
               </div>
 

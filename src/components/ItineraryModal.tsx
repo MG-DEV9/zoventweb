@@ -32,6 +32,7 @@ export const ItineraryModal: React.FC<ItineraryModalProps> = ({ destination, onC
             src={destination.image}
             alt={destination.title}
             className="w-full h-full object-cover object-center"
+            loading="lazy"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent" />
           

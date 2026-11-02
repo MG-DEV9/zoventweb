@@ -113,6 +113,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenQuote }) => {
                 src={selectedProject.image}
                 alt={selectedProject.project}
                 className="w-full h-full object-cover"
+                loading="lazy"
               />
             </div>
 

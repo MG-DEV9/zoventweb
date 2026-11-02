@@ -51,6 +51,7 @@ export const HolidayPage: React.FC<HolidayPageProps> = ({ onOpenQuote }) => {
                   src={dest.image}
                   alt={dest.title}
                   className=" font-Georgia Regular  w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 opacity-90 group-hover:opacity-100"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                 

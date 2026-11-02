@@ -32,6 +32,7 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ caseStudy, onClo
             src={caseStudy.image}
             alt={caseStudy.title}
             className="w-full h-full object-cover object-center"
+            loading="lazy"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent" />
           

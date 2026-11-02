@@ -82,6 +82,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote }) =
               className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
                 idx === heroSlide ? 'opacity-100' : 'opacity-0'
               }`}
+              loading={idx === 0 ? 'eager' : 'lazy'}
+              fetchPriority={idx === 0 ? 'high' : 'auto'}
             />
           ))}
           <div className="absolute inset-0 bg-gradient-to-r from-[#1C0409]/90 via-[#1C0409]/70 to-[#1C0409]/40" />
@@ -367,6 +369,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote }) =
                       src={client.src}
                       alt={client.name}
                       className="max-h-full max-w-full object-contain"
+                      loading="lazy"
                     />
                   </div>
                 ))}
